@@ -12,6 +12,7 @@ const ProductList = (props: ProductListProps) => (
         <div className='productList'>
             {Array.from({length: props.productNumber}, (_, index) => (
                 <SimpleProductCard key={index}
+                                   id={1}
                                    name='Nazwa'
                                    price={10}/>
             ))}

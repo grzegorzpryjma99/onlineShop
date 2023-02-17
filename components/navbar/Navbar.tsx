@@ -5,11 +5,14 @@ import logo from "public/logo.png"
 import NavbarButton from "@/components/navbar/NavbarButton";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCartShopping, faUser} from '@fortawesome/free-solid-svg-icons'
+import Link from "next/link";
 
 const Navbar = () => (
     <div className='navbar'>
         <div className="navbarItemContainer">
-            <Image className='logo' src={logo} alt='logo aplikacji'/>
+            <Link href='/'>
+                <Image className='logo' src={logo} alt='logo aplikacji'/>
+            </Link>
         </div>
         <div className='navbarItemContainer'>
             <NavbarItem label='Discover' url='/'/>
