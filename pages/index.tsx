@@ -3,6 +3,10 @@ import Navbar from "@/components/navbar/Navbar";
 import HomeBanner from "@/components/home/HomeBanner";
 import HomeCard from "@/components/home/HomeCard";
 import Footer from "@/components/footer/Footer";
+import SimpleProductCard from "@/components/home/SimpleProductCard";
+import ProductList from "@/components/home/ProductList";
+import Opinions from "@/components/home/Opinions";
+import News from "@/components/home/News";
 
 export default function Home() {
     return (
@@ -17,8 +21,13 @@ export default function Home() {
             <Navbar/>
             <HomeBanner/>
             <HomeCard/>
-            <div style={{height: '1000px'}}>
-                Kontent głownej todo
+            <div>
+                <ProductList productNumber={8}/>
+            </div>
+            <News/>
+            <Opinions/>
+            <div>
+                <ProductList productNumber={4}/>
             </div>
             <Footer/>
         </>
