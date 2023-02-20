@@ -21,7 +21,7 @@ const Navbar = () => (
         </div>
         <div className='navbarItemContainer'>
             <NavbarButton icon={<FontAwesomeIcon icon={faUser}/>}/>
-            <NavbarButton url='/'
+            <NavbarButton url='/koszyk'
                           icon={<FontAwesomeIcon icon={faCartShopping}/>}/>
         </div>
     </div>

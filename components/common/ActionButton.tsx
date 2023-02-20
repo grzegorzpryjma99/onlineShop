@@ -10,6 +10,7 @@ interface ActionButtonProps {
 const ActionButton = (props: ActionButtonProps) => (
     <div>
         <Link href={props.url}>
+            {/*TODO: width on props*/}
             <button className='action-button'>{props.icon} {props.label}</button>
         </Link>
     </div>

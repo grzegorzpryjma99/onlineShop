@@ -14,6 +14,7 @@ const ProductPage = () => {
 
     useEffect(() => {
         setProduct({
+            id: 1,
             name: 'Produkt1',
             description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
             price: 99
