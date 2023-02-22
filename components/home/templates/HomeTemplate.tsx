@@ -6,7 +6,7 @@ import ProductList from "@/components/home/ProductList";
 import News from "@/components/home/News";
 import Opinions from "@/components/home/Opinions";
 
-export default function Home() {
+export default function HomeTemplate() {
 
     return (
         <>

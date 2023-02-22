@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 export default function HomePage() {
 
     const Home = dynamic(
-        () => import('@/components/home/templates/Home'),
+        () => import('@/components/home/templates/HomeTemplate'),
         {
             loading: () => <p>Wczytywanie...</p>, //TODO: create loader
             ssr: true

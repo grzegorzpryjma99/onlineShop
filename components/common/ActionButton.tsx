@@ -3,16 +3,18 @@ import Link from "next/link";
 
 interface ActionButtonProps {
     icon?: JSX.Element
-    url: string
+    url?: string
     label: string
+    actionFunction?: () => void;
 }
 
 const ActionButton = (props: ActionButtonProps) => (
+
     <div>
-        <Link href={props.url}>
-            {/*TODO: width on props*/}
-            <button className='action-button'>{props.icon} {props.label}</button>
-        </Link>
+        {/*TODO: width on props*/}
+        {!props.actionFunction && props.url
+            ? <Link href={props.url}><button className='action-button'>{props.icon} {props.label}</button></Link>
+            : <button onClick={props.actionFunction} className='action-button'>{props.icon} {props.label}</button>}
     </div>
 );
 

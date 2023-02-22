@@ -10,7 +10,7 @@ export type ProductProps = {
     product: Product
 }
 
-const Product: React.VFC<ProductProps> = (props: ProductProps) => {
+const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
 
     return <div className='product-wrapper'>
         <div className='product-container-box'>
@@ -42,4 +42,4 @@ const Product: React.VFC<ProductProps> = (props: ProductProps) => {
     </div>
 };
 
-export default Product;
+export default ProductTemplate;

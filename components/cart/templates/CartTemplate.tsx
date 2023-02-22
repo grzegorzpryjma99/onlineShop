@@ -34,7 +34,7 @@ export default function Home() {
             <div className='cart-sum-up-container'>
                 <p>Sub-total</p>
                 <p>{totalCost} PLN</p>
-                <ActionButton label='Check-out' url='/'/>
+                <ActionButton label='Check-out' url='/zakupy'/>
             </div>
         </div>
     )

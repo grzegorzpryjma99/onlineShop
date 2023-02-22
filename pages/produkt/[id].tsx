@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Layout} from "@/components/layout/Layout";
 import {router} from "next/client";
 import dynamic from "next/dynamic";
-import {ProductProps} from "@/components/products/templates/Product";
+import {ProductProps} from "@/components/products/templates/ProductTemplate";
 import {Product} from "@/components/products/types/types";
 import {useRouter} from "next/router";
 
@@ -22,7 +22,7 @@ const ProductPage = () => {
     }, [id])
 
     const Product = dynamic<ProductProps>(
-        () => import('@/components/products/templates/Product'),
+        () => import('@/components/products/templates/ProductTemplate'),
         {
             loading: () => <p>Wczytywanie...</p>, //TODO: create loader
             ssr: true
