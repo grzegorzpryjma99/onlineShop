@@ -3,8 +3,8 @@ import dynamic from "next/dynamic";
 
 export default function HomePage() {
 
-    const Home = dynamic(
-        () => import('@/components/home/templates/HomeTemplate'),
+    const Cart = dynamic(
+        () => import('@/components/cart/templates/CartTemplate'),
         {
             loading: () => <p>Wczytywanie...</p>, //TODO: create loader
             ssr: true
@@ -13,7 +13,7 @@ export default function HomePage() {
 
     return (
         <Layout title='Sklep online'>
-            <Home/>
+            <Cart/>
         </Layout>
     )
 }
