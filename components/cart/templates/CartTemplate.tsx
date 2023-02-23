@@ -3,6 +3,7 @@ import ActionButton from "@/components/common/ActionButton";
 import CartList from "@/components/cart/CartList";
 import {useEffect, useState} from "react";
 import {Product} from "@/components/products/types/types";
+import UnderlineButton from "@/components/common/UnderlineButton";
 
 export default function Home() {
 
@@ -29,7 +30,7 @@ export default function Home() {
     return (
         <div className='cart-container'>
             <h2 className='h2-title'>Your cart items</h2>
-            <Link href='/'><p className='subline'>Back to shopping</p></Link>
+            <UnderlineButton label='Back to shopping' url='/'/>
             <CartList product={products}/>
             <div className='cart-sum-up-container'>
                 <p>Sub-total</p>

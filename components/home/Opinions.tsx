@@ -12,9 +12,9 @@ const Opinions = (props: OpinionsProps) => (
         <h2 className='title-h2'>Testimonials</h2>
         <p className='description'>Some quotes from our happy customers</p>
         <div className='productList'>
-            <SimpleOpinionCard/>
-            <SimpleOpinionCard/>
-            <SimpleOpinionCard/>
+            <SimpleOpinionCard firstName='Edoardo' lastName='xd' comment='Raccomended for everyone' rate={4}/>
+            <SimpleOpinionCard firstName='Edoardo' lastName='xd' comment='Raccomended for everyone' rate={5}/>
+            <SimpleOpinionCard firstName='Edoardo' lastName='xd' comment='Raccomended for everyone' rate={5}/>
         </div>
     </div>
 );

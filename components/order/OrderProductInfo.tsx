@@ -1,6 +1,5 @@
 import React from "react";
 import {Product} from "@/components/products/types/types";
-import CartListProduct from "@/components/cart/CartListProduct";
 import Image from "next/image";
 import productPlaceholder from "/public/productPlaceholder.png"
 

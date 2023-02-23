@@ -1,16 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import productPlaceHolder from "/public/productPlaceholder.png"
 import {Product} from "@/components/products/types/types";
 import ActionButton from "@/components/common/ActionButton";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
 
 export type ProductProps = {
     product: Product
 }
 
 const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
+
+    const [quantity, setQuantity] = useState<number>(1)
 
     return <div className='product-wrapper'>
         <div className='product-container-box'>
@@ -22,7 +25,15 @@ const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
                 <h2 className='product-name'>{props.product.name}</h2>
                 <div>
                     <p>{props.product.price} PLN</p>
-                    {/*todo: quantity*/}
+                    <InputNumber value={quantity}
+                                 className='count-input'
+                                 onValueChange={(e: InputNumberValueChangeEvent) => setQuantity(e.value || 1)}
+                                 showButtons
+                                 inputStyle={{width: '48px', borderTopColor: 'rgb(86, 178, 128)', borderBottomColor: 'rgb(86, 178, 128)', textAlign: 'center'}}
+                                 min={0}
+                                 buttonLayout="horizontal"
+                                 incrementButtonIcon="pi pi-plus"
+                                 decrementButtonIcon="pi pi-minus"/>
                 </div>
                 <div>
                     {/*todo: cos tam*/}
