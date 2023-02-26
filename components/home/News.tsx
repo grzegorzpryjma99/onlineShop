@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import newsPlaceholder from "public/newsPhoto.png"
-import ActionButton from "@/components/common/ActionButton";
+import ActionButton from "@/components/common/button/ActionButton";
 
 
 interface NewsProps {

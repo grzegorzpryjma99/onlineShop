@@ -1,9 +1,9 @@
 import Link from "next/link";
-import ActionButton from "@/components/common/ActionButton";
+import ActionButton from "@/components/common/button/ActionButton";
 import CartList from "@/components/cart/CartList";
 import {useEffect, useState} from "react";
 import {Product} from "@/components/products/types/types";
-import UnderlineButton from "@/components/common/UnderlineButton";
+import UnderlineButton from "@/components/common/button/UnderlineButton";
 
 export default function Home() {
 

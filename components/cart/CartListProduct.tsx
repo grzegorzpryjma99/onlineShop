@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Image from "next/image";
 import productPlaceholder from '/public/productPlaceholder.png'
 import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
-import UnderlineButton from "@/components/common/UnderlineButton";
+import UnderlineButton from "@/components/common/button/UnderlineButton";
 
 interface ProductCartProps {
         id: number

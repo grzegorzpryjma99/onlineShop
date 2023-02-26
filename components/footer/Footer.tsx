@@ -9,7 +9,7 @@ import logo from "public/logo.png"
 import Link from "next/link";
 
 const Footer = () => (
-    <div className='footer'>
+    <div id="footer" className='footer'>
         <div className='footer-first-section'>
             <Image className='footer-logo' src={logo} alt='logo'/>
             <p>Your natural candle made for your home and for your wellness.</p>

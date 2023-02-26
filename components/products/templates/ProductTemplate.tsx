@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Image from "next/image";
 import productPlaceHolder from "/public/productPlaceholder.png"
 import {Product} from "@/components/products/types/types";
-import ActionButton from "@/components/common/ActionButton";
+import ActionButton from "@/components/common/button/ActionButton";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";

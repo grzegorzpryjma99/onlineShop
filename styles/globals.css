@@ -143,6 +143,7 @@ button {
     max-width: 23%;
     flex-basis: 25%;
     margin: 1%;
+    height: 15em;
 }
 
 .opinion-card {
