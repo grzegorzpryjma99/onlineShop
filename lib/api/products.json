@@ -1,0 +1,77 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 87
+    },
+    {
+      "id": 2,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 99
+    },
+    {
+      "id": 3,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 12
+    },
+    {
+      "id": 4,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 44
+    },
+    {
+      "id": 5,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 765
+    },
+    {
+      "id": 6,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 342
+    },
+    {
+      "id": 7,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 34
+    },
+    {
+      "id": 8,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 94
+    },
+    {
+      "id": 9,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 43
+    },
+    {
+      "id": 10,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 23
+    },
+    {
+      "id": 11,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 99
+    },
+    {
+      "id": 12,
+      "name": "Produkt1",
+      "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+      "price": 100
+    }
+  ]
+}
+

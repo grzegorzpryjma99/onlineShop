@@ -1,4 +1,4 @@
-import React from "react";
+import React, {CSSProperties} from "react";
 import Link from "next/link";
 
 interface ActionButtonProps {
@@ -6,15 +6,18 @@ interface ActionButtonProps {
     url?: string
     label: string
     actionFunction?: () => void;
+    style?: CSSProperties
 }
 
 const ActionButton = (props: ActionButtonProps) => (
 
     <div>
-        {/*TODO: width on props*/}
         {!props.actionFunction && props.url
-            ? <Link href={props.url}><button className='action-button'>{props.icon} {props.label}</button></Link>
-            : <button onClick={props.actionFunction} className='action-button'>{props.icon} {props.label}</button>}
+            ? <Link href={props.url}>
+                <button style={props.style} className='action-button'>{props.icon} {props.label}</button>
+            </Link>
+            : <button style={props.style} onClick={props.actionFunction}
+                      className='action-button'>{props.icon} {props.label}</button>}
     </div>
 );
 

@@ -16,7 +16,7 @@ const Navbar = () => (
         </div>
         <div className='navbarItemContainer'>
             <NavbarItem label='Discover' url='/lista-produktow'/>
-            <NavbarItem label='About us' url='/'/>
+            <NavbarItem label='About' url='/'/>
             <NavbarItem label='Contact us' url='/'/>
         </div>
         <div className='navbarItemContainer'>

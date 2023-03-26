@@ -1,4 +1,4 @@
-import React from "react";
+import React, {CSSProperties} from "react";
 import Link from "next/link";
 
 interface UnderlineButtonProps {
@@ -6,15 +6,17 @@ interface UnderlineButtonProps {
     url?: string
     label: string
     actionFunction?: () => void;
+    style?: CSSProperties
 }
 
 const UnderlineButton = (props: UnderlineButtonProps) => (
-
     <div>
-        {/*TODO: width on props*/}
         {!props.actionFunction && props.url
-            ? <Link href={props.url}><button className='subline'>{props.icon} {props.label}</button></Link>
-            : <button onClick={props.actionFunction} className='subline'>{props.icon} {props.label}</button>}
+            ? <Link href={props.url}>
+                <button style={props.style} className='underline-subline'>{props.icon} {props.label}</button>
+            </Link>
+            : <button style={props.style} onClick={props.actionFunction}
+                      className='underline-subline'>{props.icon} {props.label}</button>}
     </div>
 );
 

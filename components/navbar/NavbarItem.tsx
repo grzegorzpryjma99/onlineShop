@@ -8,7 +8,7 @@ interface NavbarItemProps {
 
 const NavbarItem = (props: NavbarItemProps) => (
     <div className='navItem'>
-        <Link href={props.url}>{props.label}</Link>
+        <Link style={{color: 'black'}} href={props.url}>{props.label}</Link>
     </div>
 );
 
