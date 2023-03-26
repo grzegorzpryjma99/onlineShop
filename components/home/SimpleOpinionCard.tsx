@@ -17,7 +17,7 @@ const SimpleOpinionCard = (props: SimpleOpinionCardProps) => (
         <Rating className='rate' value={props.rate} readOnly cancel={false} />
         <div className='opinion-card-details'>
             <h3>“{props.comment}”</h3>
-            <p>{props.firstName}</p>
+            <p className='author'>{props.firstName}</p>
         </div>
     </div>
 );

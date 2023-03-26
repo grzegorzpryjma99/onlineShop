@@ -5,6 +5,7 @@ import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
 import UnderlineButton from "@/components/common/button/UnderlineButton";
 import CartService from "@/service/cartService";
 import {Product} from "@/components/products/types/types";
+import Link from "next/link";
 
 interface ProductCartProps {
     product: Product
@@ -22,12 +23,12 @@ const CartListProduct = (props: ProductCartProps) => {
 
     return <div className='cart-product-container'>
         <div className='list-one'>
-            <Image
+            <Link href={'/produkt/' + props.product.id}><Image
                 src={productPlaceholder}
                 alt='Zdjecie produktu'
-            />
-            <div>
-                <h3>{props.product.name}</h3>
+            /></Link>
+            <div className='cart-product-container-product-action'>
+                <Link href={'/produkt/' + props.product.id}><h3>{props.product.name}</h3></Link>
                 <UnderlineButton label='Remove' actionFunction={() => removeProductFromCart(props.product.id)}/>
             </div>
         </div>

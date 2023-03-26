@@ -25,7 +25,9 @@ export default function CartTemplate() {
             <div className='cart-sum-up-container'>
                 <p>Sub-total</p>
                 <p>{cart?.totalAmount} PLN</p>
-                <ActionButton label='Check-out' url='/zakupy'/>
+                <div className='cart-sum-up-button'>
+                    <ActionButton style={{width: '50%', fontSize: '18px'}} label='Check-out' url='/zakupy'/>
+                </div>
             </div>
         </div>
     )

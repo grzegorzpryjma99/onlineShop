@@ -1,9 +1,9 @@
 .footer {
     background: #272727;
-    height: 30vh;
     color: white;
     display: flex;
-    padding: 2em 4em;
+    padding: 3em 9em;
+    height: 25vh;
 }
 
 .footer-second-section {
@@ -23,6 +23,7 @@
     list-style: none;
     margin-top: 10px;
     margin-bottom: 10px;
+    font-weight: 300;
 }
 
 .footer-details > ul > a:visited {
@@ -42,6 +43,11 @@
     border-top: 1.5px solid #FFFFFF;
     padding-top: 1em;
 }
+
+.footer-first-section > p{
+    font-weight: 300;
+}
+
 
 .footer-logo {
     height: 75px;

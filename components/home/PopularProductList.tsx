@@ -1,11 +1,11 @@
 import React from "react";
 import SimpleProductCard from "@/components/home/SimpleProductCard";
 
-interface ProductListProps {
+interface PopularProductListProps {
     productNumber: number
 }
 
-const ProductList = (props: ProductListProps) => (
+const PopularProductList = (props: PopularProductListProps) => (
     <div className='listContainer'>
         <h2 className='title-h2'>Products</h2>
         <p className='description'>Order it for you or for your beloved ones </p>
@@ -20,4 +20,4 @@ const ProductList = (props: ProductListProps) => (
     </div>
 );
 
-export default ProductList;
+export default PopularProductList;

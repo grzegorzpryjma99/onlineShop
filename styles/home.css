@@ -17,11 +17,12 @@
     background: rgba(247, 248, 250, 0.8);
     backdrop-filter: blur(12px);
     border-radius: 2px;
-    justify-content: center;
     align-items: center;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    padding: 1em;
+    justify-content: space-evenly;
 }
 
 .opinion-card {
@@ -42,10 +43,41 @@
     background: white;
 }
 
+.author {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #7C8087;
+}
+
 .news-container {
     background: #F7F8FA;
     display: flex;
     justify-content: center;
     height: 80vh;
     align-items: center;
+}
+
+.news-container > div {
+    padding: 2em;
+    height: 100%;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-container-list > li {
+    margin: 5px 0px;
+}
+
+.news-container-list {
+    list-style: "\2714" inside;
+}
+
+.bannerCard > div {
+    width: 100%;
+    text-align: center;
 }
