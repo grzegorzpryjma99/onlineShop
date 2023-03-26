@@ -1,40 +1,30 @@
-import Link from "next/link";
 import ActionButton from "@/components/common/button/ActionButton";
 import CartList from "@/components/cart/CartList";
 import {useEffect, useState} from "react";
-import {Product} from "@/components/products/types/types";
 import UnderlineButton from "@/components/common/button/UnderlineButton";
+import {Cart} from "@/components/cart/types";
+import CartService from "@/service/cartService";
 
-export default function Home() {
+export default function CartTemplate() {
 
-    const [products, setProducts] = useState<Product[]>([])
-    const [totalCost, setTotalCost] = useState<number>(0)
+    const {getCart, savedCart} = CartService();
+    const [cart, setCart] = useState<Cart>()
 
     useEffect(() => {
-        setProducts([
-            {
-                id: 1,
-                name: 'Produkt1',
-                description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
-                price: 99
-            },
-            {
-                id: 1,
-                name: 'Produkt1',
-                description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
-                price: 99
-            },
-        ])
-    }, [])
+        console.log('koszykowy')
+        console.log('dasdas',getCart())
+        setCart(getCart())
+    }, [savedCart])
 
+    // console.log(cart)
     return (
         <div className='cart-container'>
             <h2 className='h2-title'>Your cart items</h2>
             <UnderlineButton label='Back to shopping' url='/'/>
-            <CartList product={products}/>
+            <CartList product={cart?.products || []}/>
             <div className='cart-sum-up-container'>
                 <p>Sub-total</p>
-                <p>{totalCost} PLN</p>
+                <p>{cart?.totalAmount} PLN</p>
                 <ActionButton label='Check-out' url='/zakupy'/>
             </div>
         </div>

@@ -12,10 +12,13 @@ import OrderDetails from "@/components/order/OrderDetails";
 import {Address, OrderInfo} from "@/lib/types";
 import {useFormik} from "formik";
 import {orderInfoValidationSchema} from "@/lib/validation";
+import {Cart, CartProduct} from "@/components/cart/types";
+import CartService from "@/service/cartService";
 
 export default function OrderTemplate() {
 
-    const [products, setProducts] = useState<Product[]>([])
+    const {getCart, savedCart} = CartService();
+    const [products, setProducts] = useState<Cart>()
     const [totalCost, setTotalCost] = useState<number>(0)
     const formik = useFormik<OrderInfo>({
         initialValues: {
@@ -45,21 +48,8 @@ export default function OrderTemplate() {
     console.log(formik.values)
 
     useEffect(() => {
-        setProducts([
-            {
-                id: 1,
-                name: 'Produkt1',
-                description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
-                price: 99
-            },
-            {
-                id: 1,
-                name: 'Produkt1',
-                description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
-                price: 99
-            },
-        ])
-    }, [])
+        setProducts(getCart())
+    }, [savedCart])
 
     const items = [
         {
@@ -142,7 +132,7 @@ export default function OrderTemplate() {
                 </div>
             </div>
             <div className='order-summarize'>
-                <ShoppingInfo products={products}/>
+                <ShoppingInfo products={products?.products.map(products => products.product)}/>
             </div>
         </div>
     )

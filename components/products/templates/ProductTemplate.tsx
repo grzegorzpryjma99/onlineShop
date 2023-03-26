@@ -6,6 +6,7 @@ import ActionButton from "@/components/common/button/ActionButton";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
+import CartService from "@/service/cartService";
 
 export type ProductProps = {
     product: Product
@@ -14,6 +15,12 @@ export type ProductProps = {
 const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
 
     const [quantity, setQuantity] = useState<number>(1)
+    const {addProductToCart} = CartService();
+
+    const addToCart = () => {
+        addProductToCart(props.product, quantity)
+        //TODO: toast z informacją
+    }
 
     return <div className='product-wrapper'>
         <div className='product-container-box'>
@@ -29,8 +36,13 @@ const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
                                  className='count-input'
                                  onValueChange={(e: InputNumberValueChangeEvent) => setQuantity(e.value || 1)}
                                  showButtons
-                                 inputStyle={{width: '48px', borderTopColor: 'rgb(86, 178, 128)', borderBottomColor: 'rgb(86, 178, 128)', textAlign: 'center'}}
-                                 min={0}
+                                 inputStyle={{
+                                     width: '48px',
+                                     borderTopColor: 'rgb(86, 178, 128)',
+                                     borderBottomColor: 'rgb(86, 178, 128)',
+                                     textAlign: 'center'
+                                 }}
+                                 min={1}
                                  buttonLayout="horizontal"
                                  incrementButtonIcon="pi pi-plus"
                                  decrementButtonIcon="pi pi-minus"/>
@@ -38,7 +50,7 @@ const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
                 <div>
                     {/*todo: cos tam*/}
                     <ActionButton icon={<FontAwesomeIcon icon={faCartShopping}/>}
-                                  url='/'
+                                  actionFunction={addToCart}
                                   label='Add to cart'/>
                 </div>
             </div>

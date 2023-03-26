@@ -3,16 +3,16 @@ import {Product} from "@/components/products/types/types";
 import OrderProductInfo from "@/components/order/OrderProductInfo";
 
 interface ShoppingInfoProps {
-    products: Product[]
+    products?: Product[]
 }
 
 const ShoppingInfo = (props: ShoppingInfoProps) => {
 
     return <div className='shopping-info-wrapper'>
         <div className='shopping-product-section'>
-            {props.products.map((product: Product) => {
+            {props.products ? props.products?.map((product: Product) => {
                 return <OrderProductInfo product={product}/>
-            })}
+            }): <p>Cart empty</p>}
         </div>
         <div>
             <div className='shopping-info-section'>

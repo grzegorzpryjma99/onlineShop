@@ -12,13 +12,15 @@ interface TextFieldProps<T> {
     maxLength?: number
     className?: string
     disabled?: boolean
+    placeholder?: string
 }
 
-export const TextField = ({formik, fieldName, minLength, maxLength, className, disabled}: TextFieldProps<any>) => {
+export const TextField = ({formik, fieldName, minLength, maxLength, className, disabled, placeholder}: TextFieldProps<any>) => {
 
     return <FormField formik={formik} fieldName={fieldName} className={className}>
         <InputText id={fieldName} name={fieldName}
                    minLength={minLength} maxLength={maxLength}
+                   placeholder={placeholder}
                    value={formik.values[fieldName]} onChange={formik.handleChange} disabled={disabled}
                    className={classNames('block', 'w-full', {'p-invalid': isFormFieldInvalid(formik, fieldName)})}
         />
