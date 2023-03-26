@@ -13,8 +13,10 @@ const ProductPage = () => {
     const [product, setProduct] = useState<Product | null>(null)
 
     useEffect(() => {
+        const productId = parseInt(router.query.id as string, 10)
+        console.log('id produktu ' , productId)
         setProduct({
-            id: 1,
+            id: productId,
             name: 'Produkt1',
             description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
             price: 99

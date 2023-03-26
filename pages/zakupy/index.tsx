@@ -4,7 +4,7 @@ import {OrderLayout} from "@/components/layout/OrderLayout";
 
 export default function HomePage() {
 
-    const BuyTemplate = dynamic(
+    const OrderTemplate = dynamic(
         () => import('@/components/order/templates/OrderTemplate'),
         {
             loading: () => <p>Wczytywanie...</p>, //TODO: create loader
@@ -14,7 +14,7 @@ export default function HomePage() {
 
     return (
         <OrderLayout title='Sklep online'>
-            <BuyTemplate/>
+            <OrderTemplate/>
         </OrderLayout>
     )
 }

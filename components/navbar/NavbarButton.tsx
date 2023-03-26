@@ -9,13 +9,13 @@ interface NavbarButtonProps {
 const NavbarButton = (props: NavbarButtonProps) => (
     <>
         {props.url ?
-            <div className='navItem'>
+            <div className=''>
                 <Link href={props.url}>
                     <button>{props.icon}</button>
                 </Link>
             </div>
             :
-            <div className='navItem'>
+            <div className=''>
                 <button>{props.icon}</button>
             </div>
         }

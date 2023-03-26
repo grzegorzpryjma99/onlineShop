@@ -2,34 +2,54 @@ import {useEffect, useState} from "react";
 import {Product} from "@/components/products/types/types";
 import ShoppingInfo from "@/components/order/ShoppingInfo";
 import {Steps} from "primereact/steps";
-import ActionButton from "@/components/common/ActionButton";
-import UnderlineButton from "@/components/common/UnderlineButton";
+import ActionButton from "@/components/common/button/ActionButton";
+import UnderlineButton from "@/components/common/button/UnderlineButton";
 import logo from "/public/logo.png"
 import Image from "next/image";
 import Link from "next/link";
 import {BreadCrumb} from "primereact/breadcrumb";
+import OrderDetails from "@/components/order/OrderDetails";
+import {Address, OrderInfo} from "@/lib/types";
+import {useFormik} from "formik";
+import {orderInfoValidationSchema} from "@/lib/validation";
+import {Cart, CartProduct} from "@/components/cart/types";
+import CartService from "@/service/cartService";
 
 export default function OrderTemplate() {
 
-    const [products, setProducts] = useState<Product[]>([])
+    const {getCart, savedCart} = CartService();
+    const [products, setProducts] = useState<Cart>()
     const [totalCost, setTotalCost] = useState<number>(0)
+    const formik = useFormik<OrderInfo>({
+        initialValues: {
+            details: {
+                contact: '',
+                shippingAddress: {
+                    firstName: '',
+                    lastName: '',
+                    shippingNote: '',
+                    street: '',
+                    number: null,
+                    city: '',
+                    postalCode: '',
+                    country: '',
+                }
+            },
+            shipping: {},
+            payment: {},
+            couponCode: ''
+        },
+        validationSchema:  orderInfoValidationSchema,
+        onSubmit: (data) => {
+            //action
+            formik.resetForm();
+        }
+    });
+    console.log(formik.values)
 
     useEffect(() => {
-        setProducts([
-            {
-                id: 1,
-                name: 'Produkt1',
-                description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
-                price: 99
-            },
-            {
-                id: 1,
-                name: 'Produkt1',
-                description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
-                price: 99
-            },
-        ])
-    }, [])
+        setProducts(getCart())
+    }, [savedCart])
 
     const items = [
         {
@@ -59,7 +79,7 @@ export default function OrderTemplate() {
     const renderStep = (activeTab: number) => {
         switch (activeTab) {
             case 0:
-                return <p>step 1</p>
+                return <OrderDetails formik={formik}/>
             case 1:
                 return <p>step 2</p>
             case 2:
@@ -112,7 +132,7 @@ export default function OrderTemplate() {
                 </div>
             </div>
             <div className='order-summarize'>
-                <ShoppingInfo products={products}/>
+                <ShoppingInfo products={products?.products.map(products => products.product)}/>
             </div>
         </div>
     )

@@ -16,7 +16,7 @@ const SimpleProductCard = (props: SimpleProductCardProps) => (
                    alt='zdjecie produktu'
                 // layout='fill'
                    objectFit='contain'
-                   style={{background: '#F7F8FA', position: 'inherit'}}
+                   style={{background: '#F7F8FA', position: 'inherit', width: '100%'}}
             />
             {/*<p>dsadas</p>*/}
             <div className='product-card-details'>
