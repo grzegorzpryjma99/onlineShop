@@ -1,0 +1,51 @@
+.banner {
+    height: 100vh;
+}
+
+.bannerImage {
+    position: inherit !important;
+    z-index: 0;
+}
+
+.bannerCard {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2;
+    width: 50%;
+    height: 40vh;
+    background: rgba(247, 248, 250, 0.8);
+    backdrop-filter: blur(12px);
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.opinion-card {
+    width: 30%;
+    max-width: 30%;
+    flex-basis: 30%;
+    margin: 1%;
+    background-color: white;
+    padding: 1em;
+    box-shadow: 0px 4px 24px rgba(139, 167, 178, 0.16);
+    border-radius: 6px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.opinion-card-details {
+    background: white;
+}
+
+.news-container {
+    background: #F7F8FA;
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    align-items: center;
+}
