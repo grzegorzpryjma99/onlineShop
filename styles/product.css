@@ -120,9 +120,16 @@
 
 .products-list-template-container {
     min-height: 65vh;
+    padding-top: 3em
 }
 
-.product-list-container{
+.product-list-container {
     text-align: center;
-    padding: 5em 10em;
+    padding: 1em 10em;
+}
+
+.product-list-search-panel {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1em 10em 0em 10em;
 }

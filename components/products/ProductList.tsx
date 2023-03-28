@@ -8,8 +8,7 @@ interface PopularProductListProps {
 
 const ProductList = (props: PopularProductListProps) => (
     <div className='product-list-container'>
-        <h2 className='title-h2'>Products</h2>
-        <p className='description'>Order it for you or for your beloved ones </p>
+
         <div className='productList'>
             {props.products.map((product, key) => {
                 return <SimpleProductCard key={key}
