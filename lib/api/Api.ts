@@ -1,4 +1,4 @@
-import {Product, ProductCategory} from "@/components/products/types/types";
+import {Product, ProductCategory, SortMode} from "@/components/products/types/types";
 import productsJson from "./products.json"
 
 export type FetchError = {
@@ -57,7 +57,7 @@ export function get(url: string) {
         )
 }
 
-export function getPaginatedProductsWithFilter(pageNumber: number, pageSize: number, category: ProductCategory | null, name: string) {
+export function getPaginatedProductsWithFilter(pageNumber: number, pageSize: number, category: ProductCategory | null, name: string, sortMode: SortMode | null) {
     const startIndex = (pageNumber) * pageSize;
     const endIndex = startIndex + pageSize;
     let filteredProducts = productsJson.products;
@@ -70,12 +70,23 @@ export function getPaginatedProductsWithFilter(pageNumber: number, pageSize: num
         totalElement = filteredProducts.length;
     }
 
+    if (sortMode !== undefined && sortMode !== null) {
+        if (SortMode.Low === sortMode) {
+            filteredProducts = filteredProducts.sort((product1, product2) => product1.price - product2.price);
+        }
+        if (SortMode.High === sortMode) {
+            filteredProducts = filteredProducts.sort((product1, product2) => product1.price + product2.price);
+        }
+        totalElement = filteredProducts.length;
+    }
+
     if (name !== undefined && name !== null && name !== "") {
         filteredProducts = filteredProducts.filter(product => {
             return product.name.includes(name)
         });
         totalElement = filteredProducts.length;
     }
+
     let paginatedProducts: Product[] = filteredProducts.map(product => ({
         ...product,
         category: ProductCategory[product.category as keyof typeof ProductCategory]
