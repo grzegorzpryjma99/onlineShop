@@ -164,3 +164,18 @@ button:hover {
     border-left-width: medium !important;
     border-width: 0 0 0 6px !important;
 }
+
+.p-toast .p-toast-message.p-toast-message-warn {
+    background: #e4f8f0 !important;
+    color: #56B280 !important;
+    border: solid #5BC08A !important;
+    border-top-width: medium !important;
+    border-right-width: medium !important;
+    border-bottom-width: medium !important;
+    border-left-width: medium !important;
+    border-width: 0 0 0 6px !important;
+}
+
+.p-toast .p-toast-message.p-toast-message-warn .p-toast-message-icon, .p-toast .p-toast-message.p-toast-message-warn .p-toast-icon-close {
+    color: #56B280 !important;
+}

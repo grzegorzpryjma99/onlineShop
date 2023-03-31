@@ -16,10 +16,11 @@ const LoginTemplate = () => {
 
     const notImplementedFunction = () => {
         toast.current?.show({
-            severity: 'success',
+            severity: 'warn',
             summary: 'Sorry',
             detail: 'Function not implemented :(',
-            life: 3000
+            life: 3000,
+            sticky: true
         });
     }
 
