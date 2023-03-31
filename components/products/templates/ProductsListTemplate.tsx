@@ -55,7 +55,6 @@ export default function ProductsListTemplate() {
 
     return (
         <div className='products-list-template-container'>
-            <i className="pi pi-check"/>
             <h2 className='title-h2'>Products</h2>
             <p className='description'>Order it for you or for your beloved ones </p>
             <div className='product-list-search-panel'>

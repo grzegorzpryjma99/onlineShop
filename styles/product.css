@@ -133,3 +133,24 @@
     justify-content: space-evenly;
     padding: 1em 10em 0em 10em;
 }
+
+.product-details-section {
+    display: flex;
+}
+
+.product-details-section > div {
+    padding: 1em 1em 1em 0em;
+}
+
+.product-container > h2 {
+    width: 100%;
+}
+
+.price {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.9px;
+    color: #56B280;
+}

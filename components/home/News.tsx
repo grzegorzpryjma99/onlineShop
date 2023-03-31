@@ -20,7 +20,7 @@ const News = (props: NewsProps) => (
                 <li>Eco-sustainable: All recyclable materials, 0% CO2 emissions</li>
                 <li>Eco-sustainable: All recyclable materials, 0% CO2 emissions</li>
             </ul>
-            <ActionButton style={{width: '40%', fontSize: '18px'}} url='/' label='Learn more'/>
+            <ActionButton style={{width: '40%', fontSize: '18px'}} url='/nasze-produkty' label='Learn more'/>
         </div>
         <div>
             <Image src={newsPlaceholder} alt='zdjecie informacyjne'/>

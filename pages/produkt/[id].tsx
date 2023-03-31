@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Layout} from "@/components/layout/Layout";
-import {router} from "next/client";
 import dynamic from "next/dynamic";
 import {ProductProps} from "@/components/products/templates/ProductTemplate";
-import {Product} from "@/components/products/types/types";
+import {Product, ProductCategory} from "@/components/products/types/types";
 import {useRouter} from "next/router";
 
 const ProductPage = () => {
@@ -14,12 +13,12 @@ const ProductPage = () => {
 
     useEffect(() => {
         const productId = parseInt(router.query.id as string, 10)
-        console.log('id produktu ' , productId)
         setProduct({
             id: productId,
             name: 'Produkt1',
             description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
-            price: 99
+            price: 99,
+            category: ProductCategory.Home
         })
     }, [id])
 

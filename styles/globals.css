@@ -29,6 +29,12 @@ body {
     overflow-x: hidden;
 }
 
+main {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 button {
     margin: 10px;
     background: transparent;
@@ -65,6 +71,17 @@ button:hover {
     font-weight: 500;
     color: #FFFFFF;
     height: 40px;
+}
+
+.action-border-button {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #56B280;
+    border-radius: 4px;
+    color: #56B280;
 }
 
 .h2-title {
@@ -136,4 +153,14 @@ button:hover {
 
 .p-rating-icon {
     color: #5BC08A !important;
+}
+
+.p-toast .p-toast-message.p-toast-message-success {
+    background: #e4f8f0;
+    border: solid #5BC08A !important;
+    border-top-width: medium !important;
+    border-right-width: medium !important;
+    border-bottom-width: medium !important;
+    border-left-width: medium !important;
+    border-width: 0 0 0 6px !important;
 }

@@ -16,11 +16,11 @@ const Navbar = () => (
         </div>
         <div className='navbarItemContainer'>
             <NavbarItem label='Discover' url='/lista-produktow'/>
-            <NavbarItem label='About' url='/'/>
+            <NavbarItem label='Home' url='/'/>
             <NavbarItem label='Contact us' url='/'/>
         </div>
         <div className='navbarItemContainer'>
-            <NavbarButton icon={<FontAwesomeIcon icon={faUser}/>}/>
+            <NavbarButton url='/logowanie' icon={<FontAwesomeIcon icon={faUser}/>}/>
             <NavbarButton url='/koszyk'
                           icon={<FontAwesomeIcon icon={faCartShopping}/>}/>
         </div>

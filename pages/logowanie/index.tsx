@@ -2,10 +2,10 @@ import {Layout} from "@/components/layout/Layout";
 import dynamic from "next/dynamic";
 import {OnlyContentLayout} from "@/components/layout/OnlyContentLayout";
 
-export default function HomePage() {
+export default function ProductListPage() {
 
-    const OrderTemplate = dynamic(
-        () => import('@/components/order/templates/OrderTemplate'),
+    const LoginTemplate = dynamic(
+        () => import('@/components/login/LoginTemplate'),
         {
             loading: () => <p>Wczytywanie...</p>, //TODO: create loader
             ssr: true
@@ -14,7 +14,7 @@ export default function HomePage() {
 
     return (
         <OnlyContentLayout title='Sklep online'>
-            <OrderTemplate/>
+            <LoginTemplate/>
         </OnlyContentLayout>
     )
 }

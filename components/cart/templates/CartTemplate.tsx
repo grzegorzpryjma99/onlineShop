@@ -11,8 +11,6 @@ export default function CartTemplate() {
     const [cart, setCart] = useState<Cart>()
 
     useEffect(() => {
-        console.log('koszykowy')
-        console.log('dasdas',getCart())
         setCart(getCart())
     }, [savedCart])
 
