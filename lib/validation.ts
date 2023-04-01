@@ -1,9 +1,9 @@
-import {Address, OrderInfo} from "@/lib/types";
+import {Address, OrderInfo, PaymentMethod, ShippingMethod} from "@/lib/types";
 import * as Yup from "yup";
 
 export const orderInfoValidationSchema: Yup.Schema<OrderInfo> = Yup.object().shape({
     details: Yup.object().shape({
-        contact: Yup.string().nullable().required("Pole wymagane"),
+        contact: Yup.string().required("Pole wymagane"),
         shippingAddress: Yup.object().shape({
             firstName: Yup.string().nullable().required("Pole wymagane"),
             lastName: Yup.string().nullable().required("Pole wymagane"),
@@ -16,10 +16,10 @@ export const orderInfoValidationSchema: Yup.Schema<OrderInfo> = Yup.object().sha
         })
     }),
     shipping: Yup.object().shape({
-        shippingMethod: Yup.object(), // todo
+        shippingMethod: Yup.mixed<ShippingMethod>().nullable().oneOf(Object.values(ShippingMethod)).required(),
     }),
     payment: Yup.object().shape({
-        //todo
+        paymentMethod: Yup.mixed<PaymentMethod>().nullable().oneOf(Object.values(PaymentMethod)).required(),
     }),
     couponCode: Yup.string()
 });

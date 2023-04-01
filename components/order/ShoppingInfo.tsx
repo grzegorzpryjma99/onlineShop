@@ -30,7 +30,7 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
     return <div className='shopping-info-wrapper'>
         <div className='shopping-product-section'>
             {props.products ? props.products?.map((product: CartProduct) => {
-                return <OrderProductInfo product={product}/>
+                return <OrderProductInfo key={product.product.id} product={product}/>
             }) : <p>Cart empty</p>}
         </div>
         <div>

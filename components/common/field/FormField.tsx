@@ -7,7 +7,7 @@ type FormFieldProps<T> = {
     className?: string
     formik: FormikType<T>
     fieldName: string & keyof T
-    label: string
+    label?: string
     style?: CSSProperties
 }
 

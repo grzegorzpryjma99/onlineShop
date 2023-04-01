@@ -25,7 +25,6 @@ export const isFormFieldInvalid2 = <T, >(errors: FormikErrors<T>, touched: Formi
 }
 
 function buildErrorMsg<T>(errors: FormikErrors<T>, name: keyof T) {
-    //@ts-ignore
     return <small className="p-error">{errors[name]}</small>;
 }
 

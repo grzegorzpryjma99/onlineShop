@@ -27,7 +27,7 @@ type DropdownFieldProps<T, U, B> = ({
 export const DropdownField = <T, U, B>(props: DropdownFieldProps<T, U, B>) => {
 
     return <FormField formik={props.formik} fieldName={props.fieldName} className={props.className}
-                      label={props.label}>
+                      label={props.label || ''}>
         <Dropdown id={props.fieldName} options={props.options}
                   disabled={props.disabled || props.loading}
                   optionValue={props.type === "CUSTOM" ? props.optionValue : undefined}

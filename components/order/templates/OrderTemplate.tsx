@@ -90,11 +90,25 @@ const OrderTemplate = () => {
         }
     }
 
+    const handleGoToShipping = () => {
+        formik.validateForm().then(errors => {
+            if (Object.keys(errors).length === 0) {
+                setActiveTab(1)
+            } else {
+                console.log(errors)
+                console.log('masz bledy')
+            }
+        });
+    }
+
     const renderButton = (activeTab: number) => {
         switch (activeTab) {
             case 0:
                 return <ActionButton style={{width: '100%'}} label='Go to Shipping'
-                                     actionFunction={() => setActiveTab(1)}/>
+                                     actionFunction={() => {
+                                         handleGoToShipping()
+                                         // setActiveTab(1)
+                                     }}/>
             case 1:
                 return <ActionButton style={{width: '100%'}} label='Go to Payment'
                                      actionFunction={() => setActiveTab(2)}/>

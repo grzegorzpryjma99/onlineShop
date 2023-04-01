@@ -7,7 +7,7 @@ import {FormField} from "@/components/common/field/FormField";
 
 interface TextFieldProps<T> {
     formik: FormikType<T>
-    fieldName: keyof PickByType<T, string>
+    fieldName: keyof PickByType<T, string | undefined>
     minLength?: number
     maxLength?: number
     className?: string
