@@ -18,7 +18,7 @@ export default function CartTemplate() {
     return (
         <div className='cart-container'>
             <h2 className='h2-title'>Your cart items</h2>
-            <UnderlineButton label='Back to shopping' url='/'/>
+            <UnderlineButton label='Back to shopping' url='/lista-produktow'/>
             <CartList product={cart?.products || []}/>
             <div className='cart-sum-up-container'>
                 <p>Sub-total</p>

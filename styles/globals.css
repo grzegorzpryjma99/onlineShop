@@ -43,13 +43,17 @@ button {
 
 button:hover {
     filter: drop-shadow(0px 4px 24px rgba(123, 123, 123, 0.15));
-    transform: scale(1.03);
-    transition: all 300ms;
+    transform: scale(1.05);
+    /*transition: all 300ms;*/
 }
 
 .listContainer {
     text-align: center;
-    padding: 10em;
+    padding: 7em 10em;
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .description {
@@ -127,6 +131,19 @@ button:hover {
     margin: 0;
 }
 
+.radio-button-field {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 1em;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dialog {
+    width: 50%;
+}
+
 .p-inputnumber-button {
     background: transparent !important;
     color: #56B280 !important;
@@ -178,4 +195,19 @@ button:hover {
 
 .p-toast .p-toast-message.p-toast-message-warn .p-toast-message-icon, .p-toast .p-toast-message.p-toast-message-warn .p-toast-icon-close {
     color: #56B280 !important;
+}
+
+.p-badge {
+    background: #56B280 !important;
+    color: #ffffff !important;
+}
+
+.p-steps .p-steps-item.p-highlight .p-steps-number {
+    background: #EEF2FF !important;
+    color: #56B280 !important;
+}
+
+.p-radiobutton .p-radiobutton-box.p-highlight {
+    border-color: #56B280 !important;
+    background: #56B280 !important;
 }

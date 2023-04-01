@@ -15,7 +15,11 @@ export const orderInfoValidationSchema: Yup.Schema<OrderInfo> = Yup.object().sha
             country: Yup.string().nullable().required("Pole wymagane"),
         })
     }),
-    shipping: Yup.object().shape({}),
-    payment: Yup.object().shape({}),
+    shipping: Yup.object().shape({
+        shippingMethod: Yup.object(), // todo
+    }),
+    payment: Yup.object().shape({
+        //todo
+    }),
     couponCode: Yup.string()
 });

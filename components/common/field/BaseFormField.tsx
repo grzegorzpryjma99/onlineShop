@@ -1,5 +1,5 @@
 import {classNames} from "primereact/utils";
-import React, {PropsWithChildren} from "react";
+import React, {CSSProperties, PropsWithChildren} from "react";
 
 interface BaseFormFieldProps<T> {
     className?: string
@@ -8,6 +8,7 @@ interface BaseFormFieldProps<T> {
     isInvalid: any
     errorMsg: JSX.Element
     id: string
+    style?: CSSProperties
 }
 
 export const BaseFormField = <T, >({
@@ -17,9 +18,10 @@ export const BaseFormField = <T, >({
                                        help,
                                        errorMsg,
                                        isInvalid,
+                                       style,
                                        children
                                    }: PropsWithChildren<BaseFormFieldProps<T>>) => {
-    return <div className={"field " + (className ? className : "")}>
+    return <div style={style} className={"field " + (className ? className : "")}>
         {label && <label htmlFor={id} className={classNames('block', {'p-error': isInvalid})}>
             {label}
         </label>}

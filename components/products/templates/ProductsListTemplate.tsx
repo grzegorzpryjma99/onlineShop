@@ -5,6 +5,9 @@ import {getPaginatedProductsWithFilter} from "@/lib/api/Api";
 import {Product, ProductCategory, SortMode} from "@/components/products/types/types";
 import {Dropdown} from "primereact/dropdown";
 import {InputText} from "primereact/inputtext";
+import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import ActionBorderButton from "@/components/common/button/ActionBorderButton";
 
 interface ProductCategoryDropDown {
     name: React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>,
@@ -28,7 +31,7 @@ const sortOptions: SortModeDropDown[] = [
 
 export default function ProductsListTemplate() {
 
-    const productsOnPage = 8;
+    const productsOnPage = 12;
     const [actualPage, setActualPage] = useState(0);
     const [totalElement, setTotalElement] = useState(0);
     const [products, setProducts] = useState<Product[]>([]);
@@ -53,6 +56,10 @@ export default function ProductsListTemplate() {
         setActualPage(0)
     }, [sortMode])
 
+    const handleFind = () => {
+        //TODO: implement
+    }
+
     return (
         <div className='products-list-template-container'>
             <h2 className='title-h2'>Products</h2>
@@ -63,15 +70,19 @@ export default function ProductsListTemplate() {
                           optionLabel="name" placeholder="Select a Category"
                           showClear
                           filter className="w-full md:w-14rem"/>
+                <Dropdown value={sortMode} onChange={(e) => setSortMode(e.value)} options={sortOptions}
+                          optionLabel="name"
+                          showClear
+                          placeholder="Sort By Price"/>
                 <span className="p-input-icon-left">
                     <i className="pi pi-search"/>
                     <InputText value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)}
                                placeholder='Search by Name'/>
                 </span>
-                <Dropdown value={sortMode} onChange={(e) => setSortMode(e.value)} options={sortOptions}
-                          optionLabel="name"
-                          showClear
-                          placeholder="Sort By Price"/>
+                <ActionBorderButton icon={<FontAwesomeIcon icon={faMagnifyingGlass}/>}
+                                    style={{width: '100%', height: '100%', margin: 0, fontSize: '18px'}}
+                                    actionFunction={handleFind}
+                                    label='Find Product'/>
             </div>
             <ProductList products={products}/>
             <Paginator first={actualPage * productsOnPage} rows={productsOnPage} totalRecords={totalElement}

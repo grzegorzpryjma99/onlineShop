@@ -1,5 +1,4 @@
-import {useEffect, useState} from "react";
-import {Product} from "@/components/products/types/types";
+import React, {useEffect, useRef, useState} from "react";
 import ShoppingInfo from "@/components/order/ShoppingInfo";
 import {Steps} from "primereact/steps";
 import ActionButton from "@/components/common/button/ActionButton";
@@ -7,16 +6,21 @@ import UnderlineButton from "@/components/common/button/UnderlineButton";
 import logo from "/public/logo.png"
 import Image from "next/image";
 import Link from "next/link";
-import {BreadCrumb} from "primereact/breadcrumb";
 import OrderDetails from "@/components/order/OrderDetails";
-import {Address, OrderInfo} from "@/lib/types";
+import {OrderInfo} from "@/lib/types";
 import {useFormik} from "formik";
 import {orderInfoValidationSchema} from "@/lib/validation";
-import {Cart, CartProduct} from "@/components/cart/types";
+import {Cart} from "@/components/cart/types";
 import CartService from "@/service/cartService";
+import {Toast} from "primereact/toast";
+import ShippingDetails from "@/components/order/ShippingDetails";
+import PaymentDetails from "@/components/order/PaymentDetails";
+import {Dialog} from "primereact/dialog";
 
-export default function OrderTemplate() {
+const OrderTemplate = () => {
 
+    const toast = useRef<Toast>(null);
+    const [dialogVisible, setDialogVisible] = useState<boolean>(false);
     const {getCart, savedCart} = CartService();
     const [products, setProducts] = useState<Cart>()
     const [totalCost, setTotalCost] = useState<number>(0)
@@ -35,11 +39,15 @@ export default function OrderTemplate() {
                     country: '',
                 }
             },
-            shipping: {},
-            payment: {},
+            shipping: {
+                shippingMethod: null
+            },
+            payment: {
+                paymentMethod: null
+            },
             couponCode: ''
         },
-        validationSchema:  orderInfoValidationSchema,
+        validationSchema: orderInfoValidationSchema,
         onSubmit: (data) => {
             //action
             formik.resetForm();
@@ -52,11 +60,6 @@ export default function OrderTemplate() {
     }, [savedCart])
 
     const items = [
-        {
-            label: 'Cart',
-            command: (event: any) => {
-            }
-        },
         {
             label: 'Details',
             command: (event: any) => {
@@ -79,49 +82,71 @@ export default function OrderTemplate() {
     const renderStep = (activeTab: number) => {
         switch (activeTab) {
             case 0:
-                return <OrderDetails formik={formik}/>
+                return <OrderDetails formik={formik}/>;
             case 1:
-                return <p>step 2</p>
+                return <ShippingDetails formik={formik}/>
             case 2:
-                return <p>step 3</p>
-            case 3:
-                return <p>step 4</p>
+                return <PaymentDetails formik={formik}/>
         }
     }
 
     const renderButton = (activeTab: number) => {
         switch (activeTab) {
             case 0:
-                return <ActionButton label='Go to Details' actionFunction={() => setActiveTab(1)}/>
+                return <ActionButton style={{width: '100%'}} label='Go to Shipping'
+                                     actionFunction={() => setActiveTab(1)}/>
             case 1:
-                return <ActionButton label='Go to Shipping' actionFunction={() => setActiveTab(2)}/>
+                return <ActionButton style={{width: '100%'}} label='Go to Payment'
+                                     actionFunction={() => setActiveTab(2)}/>
             case 2:
-                return <ActionButton label='Go to Payment' actionFunction={() => setActiveTab(3)}/>
-            case 3:
-                return <ActionButton url='/' label='Pay now'/>
+                return <ActionButton style={{width: '100%'}} actionFunction={handleOrder} label='Pay now'/>
         }
     }
 
     const renderBackButton = (activeTab: number) => {
         switch (activeTab) {
             case 0:
-                return <UnderlineButton url='/' label='Back to shopping'/>
+                return <UnderlineButton
+                    divStyle={{
+                        textAlign: 'left',
+                        alignItems: 'center',
+                        display: 'flex'
+                    }}
+                    url='/koszyk' label='Back to cart'/>
             case 1:
-                return <UnderlineButton label='Back to Cart' actionFunction={() => setActiveTab(0)}/>
+                return <UnderlineButton
+                    divStyle={{
+                        textAlign: 'left',
+                        alignItems: 'center',
+                        display: 'flex'
+                    }}
+                    label='Back to Details'
+                    actionFunction={() => setActiveTab(0)}/>
             case 2:
-                return <UnderlineButton label='Back to Details' actionFunction={() => setActiveTab(1)}/>
-            case 3:
-                return <UnderlineButton label='Back to Shipping' actionFunction={() => setActiveTab(2)}/>
+                return <UnderlineButton
+                    divStyle={{
+                        textAlign: 'left',
+                        alignItems: 'center',
+                        display: 'flex'
+                    }}
+                    label='Back to Shipping'
+                    actionFunction={() => setActiveTab(1)}/>
         }
     }
 
+    const handleOrder = () => {
+        setDialogVisible(true)
+    }
 
-    return (
+    return <>
         <div className='order-container'>
+            <Toast ref={toast}/>
+
             <div className='order-steps-wrapper'>
                 <div>
                     <Link href='/'><Image className='logo' src={logo} alt='logo'/></Link>
-                    <Steps model={items} activeIndex={activeTab} onSelect={(e) => setActiveTab(e.index)} readOnly={false}/>
+                    <Steps model={items} activeIndex={activeTab} onSelect={(e) => setActiveTab(e.index)}
+                           readOnly={false}/>
                 </div>
                 <div className='order-step-content'>
                     {renderStep(activeTab)}
@@ -132,8 +157,18 @@ export default function OrderTemplate() {
                 </div>
             </div>
             <div className='order-summarize'>
-                <ShoppingInfo products={products?.products.map(products => products.product)}/>
+                <ShoppingInfo formik={formik} products={products?.products.map(products => products)}/>
             </div>
         </div>
-    )
+        <Dialog className='dialog' closable={false}
+                header="Info"
+                visible={dialogVisible}
+                onHide={() => {
+                }}
+                footer={<ActionButton url='/' style={{width: '25%'}} label={'Ok'}/>}>
+            <p>Function not implemented, thanks for testing</p>
+        </Dialog>
+    </>
 }
+
+export default OrderTemplate;
