@@ -120,9 +120,48 @@
 
 .products-list-template-container {
     min-height: 65vh;
+    padding-top: 3em
 }
 
-.product-list-container{
+.product-list-container {
     text-align: center;
-    padding: 5em 10em;
+    padding: 1em 10em;
+}
+
+.product-list-search-panel {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 10em 0em 10em;
+    height: 65px;
+    align-items: center;
+}
+
+.product-list-search-panel > span > input {
+    height: 100%;
+}
+
+.product-list-search-panel > * {
+    width: 20% !important;
+    height: 100% !important;
+}
+
+.product-details-section {
+    display: flex;
+}
+
+.product-details-section > div {
+    padding: 1em 1em 1em 0em;
+}
+
+.product-container > h2 {
+    width: 100%;
+}
+
+.price {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.9px;
+    color: #56B280;
 }

@@ -70,6 +70,21 @@ const CartService = () => {
         return cart;
     }
 
+    const countProducts = (): number => {
+        let cart: Cart;
+        if (savedCart) {
+            cart = JSON.parse(savedCart);
+        } else {
+            cart = {
+                products: [],
+                totalAmount: 0
+            }
+        }
+        let counter: number = 0;
+        cart.products.map(product => counter += product.quantity);
+        return counter;
+    }
+
     const reCalculateTotalAmountAndSave = (cart: Cart) => {
         let actualCart: Cart = cart
         let total = 0;
@@ -87,6 +102,7 @@ const CartService = () => {
         removeProductFromCart,
         updateQuantity,
         savedCart,
+        countProducts
     }
 };
 

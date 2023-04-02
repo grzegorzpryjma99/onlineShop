@@ -11,11 +11,11 @@ export interface Details {
 }
 
 export interface Shipping {
-
+    shippingMethod: ShippingMethod | null
 }
 
 export interface Payment {
-
+    paymentMethod: PaymentMethod | null
 }
 
 export interface Address {
@@ -27,4 +27,15 @@ export interface Address {
     city: string
     postalCode: string
     country: string
+}
+
+export enum ShippingMethod {
+    SELF_PICKUP = 'Self Pickup',
+    STANDARD_SHIPPING = 'Standard Shipping',
+    FREE_SHIPPING = 'Free Shipping'
+}
+
+export enum PaymentMethod {
+    BLIK = 'Blik',
+    BANK_TRANSFER = 'Bank transfer',
 }

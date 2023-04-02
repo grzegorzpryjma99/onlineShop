@@ -4,8 +4,8 @@ import {Loader} from "@/components/common/Loader";
 
 export default function ProductListPage() {
 
-    const ProductsList = dynamic(
-        () => import('@/components/products/templates/ProductsListTemplate'),
+    const LearnMoreTemplate = dynamic(
+        () => import('@/components/about/LearnMoreTemplate'),
         {
             loading: () => <Loader/>,
             ssr: true
@@ -13,8 +13,8 @@ export default function ProductListPage() {
     )
 
     return (
-        <Layout title='Sklep online - produkty'>
-            <ProductsList/>
+        <Layout title='Sklep online - nasze produkty'>
+            <LearnMoreTemplate/>
         </Layout>
     )
 }

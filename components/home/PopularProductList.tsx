@@ -1,21 +1,24 @@
 import React from "react";
 import SimpleProductCard from "@/components/home/SimpleProductCard";
+import {Product} from "@/components/products/types/types";
 
 interface PopularProductListProps {
-    productNumber: number
+    products: Product[]
+    title: string
+    description: string
 }
 
 const PopularProductList = (props: PopularProductListProps) => (
     <div className='listContainer'>
-        <h2 className='title-h2'>Products</h2>
-        <p className='description'>Order it for you or for your beloved ones </p>
+        <h2 className='title-h2'>{props.title}</h2>
+        <p className='description'>{props.description}</p>
         <div className='productList'>
-            {Array.from({length: props.productNumber}, (_, index) => (
-                <SimpleProductCard key={index}
-                                   id={1}
-                                   name='Nazwa'
-                                   price={10}/>
-            ))}
+            {props.products.map(product => {
+                return <SimpleProductCard key={product.id}
+                                          id={product.id}
+                                          name={product.name}
+                                          price={product.price}/>
+            })}
         </div>
     </div>
 );

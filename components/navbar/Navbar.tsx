@@ -3,8 +3,6 @@ import NavbarItem from "@/components/navbar/NavbarItem";
 import Image from "next/image";
 import logo from "public/logo.png"
 import NavbarButton from "@/components/navbar/NavbarButton";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCartShopping, faUser} from '@fortawesome/free-solid-svg-icons'
 import Link from "next/link";
 
 const Navbar = () => (
@@ -16,13 +14,12 @@ const Navbar = () => (
         </div>
         <div className='navbarItemContainer'>
             <NavbarItem label='Discover' url='/lista-produktow'/>
-            <NavbarItem label='About' url='/'/>
+            <NavbarItem label='Home' url='/'/>
             <NavbarItem label='Contact us' url='/'/>
         </div>
         <div className='navbarItemContainer'>
-            <NavbarButton icon={<FontAwesomeIcon icon={faUser}/>}/>
-            <NavbarButton url='/koszyk'
-                          icon={<FontAwesomeIcon icon={faCartShopping}/>}/>
+            <NavbarButton showBadge={false} url='/logowanie' piIconName='pi-user'/>
+            <NavbarButton showBadge={true} url='/koszyk' piIconName='pi-shopping-cart'/>
         </div>
     </div>
 );

@@ -7,7 +7,8 @@ const HomeCard = () => (
         <p className='description'>All handmade with natural soy wax, Candleaf is a companion for all your pleasure
             moments </p>
         <div>
-            <ActionButton style={{width: '40%', fontSize: '18px'}} url='/lista-produktow' label='Discovery our collection'/>
+            <ActionButton style={{width: '40%', fontSize: '18px'}} url='/lista-produktow'
+                          label='Discovery our collection'/>
         </div>
     </div>
 );

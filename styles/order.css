@@ -1,6 +1,6 @@
 .order-container {
     display: flex;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 }
 
@@ -24,6 +24,12 @@
     justify-content: space-around;
 }
 
+.order-button-wrapper > div {
+    width: 45%;
+    text-align: center;
+
+}
+
 .order-step-content {
 
 }
@@ -43,6 +49,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .shopping-product-section {
@@ -52,4 +59,20 @@
 
 .buying-product-info-wrapper {
     display: flex;
+}
+
+.order-details-wrapper > div > input {
+    width: 100%;
+    margin: 10px 0px 0px 0px;
+}
+
+.ordering-sum-up {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 1em;
+    margin: 10px 0px;
+}
+
+.order-header {
+    margin-top: 10px;
 }

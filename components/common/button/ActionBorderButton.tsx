@@ -1,7 +1,7 @@
 import React, {CSSProperties} from "react";
 import Link from "next/link";
 
-interface ActionButtonProps {
+interface ActionBorderButtonProps {
     icon?: JSX.Element
     url?: string
     label: string
@@ -11,16 +11,16 @@ interface ActionButtonProps {
     divClassName?: string
 }
 
-const ActionButton = (props: ActionButtonProps) => (
+const ActionBorderButton = (props: ActionBorderButtonProps) => (
 
     <div className={props.divClassName} style={props.divStyle}>
         {!props.actionFunction && props.url
             ? <Link href={props.url}>
-                <button style={props.style} className='action-button'>{props.icon} {props.label}</button>
+                <button style={props.style} className='action-border-button'>{props.icon} {props.label}</button>
             </Link>
             : <button style={props.style} onClick={props.actionFunction}
-                      className='action-button'>{props.icon} {props.label}</button>}
+                      className='action-border-button'>{props.icon} {props.label}</button>}
     </div>
 );
 
-export default ActionButton;
+export default ActionBorderButton;
