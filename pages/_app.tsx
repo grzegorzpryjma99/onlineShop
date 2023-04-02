@@ -1,22 +1,28 @@
-import '@/styles/globals.css'
-import '@/styles/footer.css'
-import '@/styles/home.css'
-import '@/styles/navbar.css'
-import '@/styles/product.css'
-import '@/styles/cart.css'
-import '@/styles/order.css'
-import '@/styles/info.css'
-import '@/styles/login.css'
-import type {AppProps} from 'next/app'
-import {config} from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import "primereact/resources/themes/lara-light-indigo/theme.css";
-import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
+import '@/styles/globals.css';
+import '@/styles/footer.css';
+import '@/styles/home.css';
+import '@/styles/navbar.css';
+import '@/styles/product.css';
+import '@/styles/cart.css';
+import '@/styles/order.css';
+import '@/styles/info.css';
+import '@/styles/login.css';
+import type { AppProps } from 'next/app';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import CartProvider from '@/service/CartProvider';
 
+config.autoAddCss = false;
 
-config.autoAddCss = false
-
-export default function App({Component, pageProps}: AppProps) {
-    return <Component {...pageProps} />
+function App({ Component, pageProps }: AppProps) {
+    return (
+        <CartProvider>
+            <Component {...pageProps} />
+        </CartProvider>
+    );
 }
+
+export default App

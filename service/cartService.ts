@@ -8,7 +8,6 @@ const CartService = () => {
     const [savedCart, setSavedCart] = useLocalStorage("", 'cart');
 
     useEffect(() => {
-        console.log('serwisowy')
         if (savedCart === "") {
             let cart: Cart = {
                 products: [],

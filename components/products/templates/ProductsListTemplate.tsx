@@ -20,8 +20,8 @@ interface SortModeDropDown {
 }
 
 const categories: ProductCategoryDropDown[] = [
-    {name: <p><i className="pi pi-tag"/> Home</p>, code: ProductCategory.Home},
-    {name: <p><i className="pi pi-tag"/> Garden</p>, code: ProductCategory.Garden},
+    {name: <p><i className="pi pi-tag"/> Home</p>, code: ProductCategory.HOME},
+    {name: <p><i className="pi pi-tag"/> Garden</p>, code: ProductCategory.GARDEN},
 ];
 
 const sortOptions: SortModeDropDown[] = [
@@ -40,16 +40,16 @@ const ProductsListTemplate = () => {
     const [sortMode, setSortMode] = useState<SortModeDropDown | null>(null);
 
     useEffect(() => {
-        let {paginatedProducts, totalElement} = getPaginatedProductsWithFilter(
+        getPaginatedProductsWithFilter(
             actualPage,
             productsOnPage,
             selectedCategory != undefined ? selectedCategory.code : null,
             searchProduct,
             sortMode != undefined ? sortMode.code : null,
-        );
-
-        setProducts(paginatedProducts);
-        setTotalElement(totalElement)
+        ).then(res => {
+            setProducts(res.paginatedProducts);
+            setTotalElement(res.totalElement)
+        });
     }, [actualPage, selectedCategory, searchProduct, sortMode])
 
     useEffect(() => {

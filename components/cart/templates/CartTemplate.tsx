@@ -1,18 +1,11 @@
 import ActionButton from "@/components/common/button/ActionButton";
 import CartList from "@/components/cart/CartList";
-import {useEffect, useState} from "react";
 import UnderlineButton from "@/components/common/button/UnderlineButton";
-import {Cart} from "@/components/cart/types";
-import CartService from "@/service/cartService";
+import useCart from "@/service/cartService2";
 
 const CartTemplate = () => {
 
-    const {getCart, savedCart} = CartService();
-    const [cart, setCart] = useState<Cart>()
-
-    useEffect(() => {
-        setCart(getCart())
-    }, [savedCart])
+    const {cart} = useCart();
 
     return <div className='cart-container'>
         <h2 className='h2-title'>Your cart items</h2>

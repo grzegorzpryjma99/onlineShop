@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import ShoppingInfo from "@/components/order/ShoppingInfo";
 import {Steps} from "primereact/steps";
 import ActionButton from "@/components/common/button/ActionButton";
@@ -11,12 +11,12 @@ import {OrderInfo} from "@/lib/types";
 import {useFormik} from "formik";
 import {orderInfoValidationSchema} from "@/lib/validation";
 import {Cart} from "@/components/cart/types";
-import CartService from "@/service/cartService";
 import {Toast} from "primereact/toast";
 import ShippingDetails from "@/components/order/ShippingDetails";
 import PaymentDetails from "@/components/order/PaymentDetails";
 import {Dialog} from "primereact/dialog";
 import {FormikType} from "@/lib/FormikUtils";
+import useCart from "@/service/cartService2";
 
 const items = [{label: 'Details'}, {label: 'Shipping'}, {label: 'Payment'}];
 
@@ -33,11 +33,11 @@ const renderStep = (activeTab: number, formik: FormikType<OrderInfo>) => {
 
 const OrderTemplate = () => {
 
+    const {cart} = useCart();
     const toast = useRef<Toast>(null);
     const [dialogVisible, setDialogVisible] = useState<boolean>(false);
-    const [products, setProducts] = useState<Cart>()
+    const [products, setProducts] = useState<Cart>(cart)
     const [activeTab, setActiveTab] = useState(0)
-    const {getCart, savedCart} = CartService();
 
     const formik = useFormik<OrderInfo>({
         initialValues: {
@@ -67,10 +67,6 @@ const OrderTemplate = () => {
         onSubmit: (data) => {
         }
     });
-
-    useEffect(() => {
-        setProducts(getCart())
-    }, [savedCart])
 
     const handleOrder = () => {
         formik.validateForm().then(errors => {
@@ -178,7 +174,7 @@ const OrderTemplate = () => {
                 </div>
             </div>
             <div className='order-summarize'>
-                <ShoppingInfo formik={formik} products={products?.products.map(products => products)}/>
+                <ShoppingInfo formik={formik} products={products.products.map(products => products)}/>
             </div>
         </div>
         <Dialog className='dialog' closable={false}

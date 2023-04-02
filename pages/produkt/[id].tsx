@@ -1,26 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Layout} from "@/components/layout/Layout";
 import dynamic from "next/dynamic";
-import {ProductProps} from "@/components/products/templates/ProductTemplate";
 import {Product} from "@/components/products/types/types";
-import {useRouter} from "next/router";
-import {exampleProductList4} from "@/lib/Utils";
 import {Loader} from "@/components/common/Loader";
+import {GetStaticPaths, GetStaticProps} from "next";
+import {ParsedUrlQuery} from "querystring";
 
-const ProductPage = () => {
+const ProductPage = (props: any) => {
 
-    const router = useRouter();
-    const {id} = router.query
-    const [product, setProduct] = useState<Product | null>(null)
-
-    //TODO: zmienić to dla ssr i csr
-    useEffect(() => {
-        const productId: number = parseInt(router.query.id as string, 10)
-        let product: Product | null = exampleProductList4.find((product: Product) => product.id === productId) || null;
-        setProduct(product)
-    }, [id])
-
-    const Product = dynamic<ProductProps>(
+    const Product = dynamic(
         () => import('@/components/products/templates/ProductTemplate'),
         {
             loading: () => <Loader/>,
@@ -28,10 +16,39 @@ const ProductPage = () => {
         }
     )
 
-    return <Layout title={product?.name || 'Sklep online'}>
-        {product && <Product product={product}/>}
+    return <Layout title={props.product?.name || 'Sklep online'}>
+        <Product {...props}/>
     </Layout>
 
 };
 
 export default ProductPage;
+
+
+interface IParams extends ParsedUrlQuery {
+    id: string
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const res = await fetch('http://localhost:3000/api/products') //fixme: on prod
+    const products = await res.json()
+    const paths = products.map((product: Product) => ({
+        params: {id: product.id.toString()},
+    }))
+
+    return {
+        paths: paths,
+        fallback: true
+    }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const {id} = context.params as IParams
+    const res = await fetch(`http://localhost:3000/api/product/${id}`)
+    const product = await res.json()
+    return {
+        props: {
+            product,
+        },
+    }
+}

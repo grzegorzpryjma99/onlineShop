@@ -7,8 +7,8 @@ export interface Product {
 }
 
 export enum ProductCategory {
-    Home = "HOME",
-    Garden = "GARDEN"
+    HOME = "HOME",
+    GARDEN = "GARDEN"
 }
 
 export enum SortMode {
