@@ -7,10 +7,11 @@ interface UnderlineButtonProps {
     label: string
     actionFunction?: () => void;
     style?: CSSProperties
+    divStyle?: CSSProperties
 }
 
 const UnderlineButton = (props: UnderlineButtonProps) => (
-    <div>
+    <div style={props.divStyle}>
         {!props.actionFunction && props.url
             ? <Link href={props.url}>
                 <button style={props.style} className='underline-subline'>{props.icon} {props.label}</button>

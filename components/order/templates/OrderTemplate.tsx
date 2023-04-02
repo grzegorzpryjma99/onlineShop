@@ -1,5 +1,4 @@
-import {useEffect, useState} from "react";
-import {Product} from "@/components/products/types/types";
+import React, {useEffect, useRef, useState} from "react";
 import ShoppingInfo from "@/components/order/ShoppingInfo";
 import {Steps} from "primereact/steps";
 import ActionButton from "@/components/common/button/ActionButton";
@@ -7,19 +6,39 @@ import UnderlineButton from "@/components/common/button/UnderlineButton";
 import logo from "/public/logo.png"
 import Image from "next/image";
 import Link from "next/link";
-import {BreadCrumb} from "primereact/breadcrumb";
 import OrderDetails from "@/components/order/OrderDetails";
-import {Address, OrderInfo} from "@/lib/types";
+import {OrderInfo} from "@/lib/types";
 import {useFormik} from "formik";
 import {orderInfoValidationSchema} from "@/lib/validation";
-import {Cart, CartProduct} from "@/components/cart/types";
+import {Cart} from "@/components/cart/types";
 import CartService from "@/service/cartService";
+import {Toast} from "primereact/toast";
+import ShippingDetails from "@/components/order/ShippingDetails";
+import PaymentDetails from "@/components/order/PaymentDetails";
+import {Dialog} from "primereact/dialog";
+import {FormikType} from "@/lib/FormikUtils";
 
-export default function OrderTemplate() {
+const items = [{label: 'Details'}, {label: 'Shipping'}, {label: 'Payment'}];
 
-    const {getCart, savedCart} = CartService();
+const renderStep = (activeTab: number, formik: FormikType<OrderInfo>) => {
+    switch (activeTab) {
+        case 0:
+            return <OrderDetails formik={formik}/>;
+        case 1:
+            return <ShippingDetails formik={formik}/>
+        case 2:
+            return <PaymentDetails formik={formik}/>
+    }
+}
+
+const OrderTemplate = () => {
+
+    const toast = useRef<Toast>(null);
+    const [dialogVisible, setDialogVisible] = useState<boolean>(false);
     const [products, setProducts] = useState<Cart>()
-    const [totalCost, setTotalCost] = useState<number>(0)
+    const [activeTab, setActiveTab] = useState(0)
+    const {getCart, savedCart} = CartService();
+
     const formik = useFormik<OrderInfo>({
         initialValues: {
             details: {
@@ -35,96 +54,123 @@ export default function OrderTemplate() {
                     country: '',
                 }
             },
-            shipping: {},
-            payment: {},
+            shipping: {
+                shippingMethod: null
+            },
+            payment: {
+                paymentMethod: null
+            },
             couponCode: ''
         },
-        validationSchema:  orderInfoValidationSchema,
+        validateOnChange: false,
+        validationSchema: orderInfoValidationSchema,
         onSubmit: (data) => {
-            //action
-            formik.resetForm();
         }
     });
-    console.log(formik.values)
 
     useEffect(() => {
         setProducts(getCart())
     }, [savedCart])
 
-    const items = [
-        {
-            label: 'Cart',
-            command: (event: any) => {
+    const handleOrder = () => {
+        formik.validateForm().then(errors => {
+            if (errors.payment === undefined) {
+                setDialogVisible(true)
             }
-        },
-        {
-            label: 'Details',
-            command: (event: any) => {
+        });
+    }
+
+    const handleChangeTab = (tabNumber: number) => {
+        if (activeTab === 0) {
+            formik.validateForm().then(errors => {
+                if (errors.details === undefined) {
+                    if (tabNumber === 1) {
+                        setActiveTab(tabNumber)
+                    }
+                    if (tabNumber == 2) {
+                        formik.validateForm().then(errors => {
+                            if (errors.shipping === undefined) {
+                                setActiveTab(tabNumber)
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        if (activeTab === 1) {
+            if (tabNumber === 2) {
+                formik.validateForm().then(errors => {
+                    if (errors.shipping === undefined) {
+                        setActiveTab(tabNumber)
+                    }
+                });
             }
-        },
-        {
-            label: 'Shipping',
-            command: (event: any) => {
-            }
-        },
-        {
-            label: 'Payment',
-            command: (event: any) => {
+            if (tabNumber == 0) {
+                setActiveTab(tabNumber)
             }
         }
-    ];
 
-    const [activeTab, setActiveTab] = useState(0)
-
-    const renderStep = (activeTab: number) => {
-        switch (activeTab) {
-            case 0:
-                return <OrderDetails formik={formik}/>
-            case 1:
-                return <p>step 2</p>
-            case 2:
-                return <p>step 3</p>
-            case 3:
-                return <p>step 4</p>
+        if (activeTab === 2) {
+            setActiveTab(tabNumber)
         }
     }
 
     const renderButton = (activeTab: number) => {
         switch (activeTab) {
             case 0:
-                return <ActionButton label='Go to Details' actionFunction={() => setActiveTab(1)}/>
+                return <ActionButton style={{width: '100%'}} label='Go to Shipping'
+                                     actionFunction={() => handleChangeTab(1)}/>
             case 1:
-                return <ActionButton label='Go to Shipping' actionFunction={() => setActiveTab(2)}/>
+                return <ActionButton style={{width: '100%'}} label='Go to Payment'
+                                     actionFunction={() => handleChangeTab(2)}/>
             case 2:
-                return <ActionButton label='Go to Payment' actionFunction={() => setActiveTab(3)}/>
-            case 3:
-                return <ActionButton url='/' label='Pay now'/>
+                return <ActionButton style={{width: '100%'}} actionFunction={handleOrder} label='Pay now'/>
         }
     }
 
     const renderBackButton = (activeTab: number) => {
         switch (activeTab) {
             case 0:
-                return <UnderlineButton url='/' label='Back to shopping'/>
+                return <UnderlineButton
+                    divStyle={{
+                        textAlign: 'left',
+                        alignItems: 'center',
+                        display: 'flex'
+                    }}
+                    url='/koszyk' label='Back to cart'/>
             case 1:
-                return <UnderlineButton label='Back to Cart' actionFunction={() => setActiveTab(0)}/>
+                return <UnderlineButton
+                    divStyle={{
+                        textAlign: 'left',
+                        alignItems: 'center',
+                        display: 'flex'
+                    }}
+                    label='Back to Details'
+                    actionFunction={() => setActiveTab(0)}/>
             case 2:
-                return <UnderlineButton label='Back to Details' actionFunction={() => setActiveTab(1)}/>
-            case 3:
-                return <UnderlineButton label='Back to Shipping' actionFunction={() => setActiveTab(2)}/>
+                return <UnderlineButton
+                    divStyle={{
+                        textAlign: 'left',
+                        alignItems: 'center',
+                        display: 'flex'
+                    }}
+                    label='Back to Shipping'
+                    actionFunction={() => setActiveTab(1)}/>
         }
     }
 
-
-    return (
+    return <>
         <div className='order-container'>
+            <Toast ref={toast}/>
             <div className='order-steps-wrapper'>
                 <div>
                     <Link href='/'><Image className='logo' src={logo} alt='logo'/></Link>
-                    <Steps model={items} activeIndex={activeTab} onSelect={(e) => setActiveTab(e.index)} readOnly={false}/>
+                    <Steps model={items} activeIndex={activeTab} onSelect={(e) => handleChangeTab(e.index)}
+                           readOnly={false}/>
                 </div>
                 <div className='order-step-content'>
-                    {renderStep(activeTab)}
+                    {renderStep(activeTab, formik)}
                 </div>
                 <div className='order-button-wrapper'>
                     {renderBackButton(activeTab)}
@@ -132,8 +178,18 @@ export default function OrderTemplate() {
                 </div>
             </div>
             <div className='order-summarize'>
-                <ShoppingInfo products={products?.products.map(products => products.product)}/>
+                <ShoppingInfo formik={formik} products={products?.products.map(products => products)}/>
             </div>
         </div>
-    )
+        <Dialog className='dialog' closable={false}
+                header="Info"
+                visible={dialogVisible}
+                onHide={() => {
+                }}
+                footer={<ActionButton url='/' style={{width: '25%'}} label={'Ok'}/>}>
+            <p>Function not implemented, thanks for testing</p>
+        </Dialog>
+    </>
 }
+
+export default OrderTemplate;

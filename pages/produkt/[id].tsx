@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {Layout} from "@/components/layout/Layout";
-import {router} from "next/client";
 import dynamic from "next/dynamic";
 import {ProductProps} from "@/components/products/templates/ProductTemplate";
 import {Product} from "@/components/products/types/types";
 import {useRouter} from "next/router";
+import {exampleProductList4} from "@/lib/Utils";
+import {Loader} from "@/components/common/Loader";
 
 const ProductPage = () => {
 
@@ -12,26 +13,22 @@ const ProductPage = () => {
     const {id} = router.query
     const [product, setProduct] = useState<Product | null>(null)
 
+    //TODO: zmienić to dla ssr i csr
     useEffect(() => {
-        const productId = parseInt(router.query.id as string, 10)
-        console.log('id produktu ' , productId)
-        setProduct({
-            id: productId,
-            name: 'Produkt1',
-            description: 'All hand-made with natural soy wax, Candleaf is made for your pleasure moments.',
-            price: 99
-        })
+        const productId: number = parseInt(router.query.id as string, 10)
+        let product: Product | null = exampleProductList4.find((product: Product) => product.id === productId) || null;
+        setProduct(product)
     }, [id])
 
     const Product = dynamic<ProductProps>(
         () => import('@/components/products/templates/ProductTemplate'),
         {
-            loading: () => <p>Wczytywanie...</p>, //TODO: create loader
+            loading: () => <Loader/>,
             ssr: true
         }
     )
 
-    return <Layout title=''>
+    return <Layout title={product?.name || 'Sklep online'}>
         {product && <Product product={product}/>}
     </Layout>
 

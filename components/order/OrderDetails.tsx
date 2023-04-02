@@ -8,20 +8,27 @@ interface OrderDetailsProps {
 }
 
 const OrderDetails = (props: OrderDetailsProps) => {
-    let formik = props.formik;
-
-    return <div className=''>
-        <h2>Contact</h2>
-        <TextField formik={formik} placeholder='Email or mobile phone number' fieldName='details.contact'/>
-        <h2>Shipping Address</h2>
-        <TextField formik={formik} placeholder='Name' fieldName='details.shippingAddress.firstName'/>
-        <TextField formik={formik} placeholder='Second Name' fieldName='details.shippingAddress.lastName'/>
-        {/*//input*/}
-        <TextField formik={formik} placeholder='Shipping note (optional)' fieldName='details.shippingAddress.shippingNote'/>
-        <TextField formik={formik} placeholder='Address and number' fieldName='details.shippingAddress.street'/>
-        <TextField formik={formik} placeholder='City' fieldName='details.shippingAddress.city'/>
-        <TextField formik={formik} placeholder='Postal Code' fieldName='details.shippingAddress.postalCode'/>
-        <TextField formik={formik} placeholder='Country' fieldName='details.shippingAddress.country'/>
+    return <div className='order-details-wrapper'>
+        <h2 className='order-header'>Contact</h2>
+        <TextField formik={props.formik} placeholder='Email or mobile phone number' fieldName='details.contact'
+                   shouldRenderErrorMessage={true}/>
+        <h2 className='order-header'>Shipping Address</h2>
+        <TextField formik={props.formik} placeholder='Name' fieldName='details.shippingAddress.firstName'
+                   shouldRenderErrorMessage={true}/>
+        <TextField formik={props.formik} placeholder='Second Name' fieldName='details.shippingAddress.lastName'
+                   shouldRenderErrorMessage={true}/>
+        <TextField formik={props.formik} placeholder='Address' fieldName='details.shippingAddress.street'
+                   shouldRenderErrorMessage={true}/>
+        <TextField formik={props.formik} placeholder='Number' fieldName='details.shippingAddress.number'
+                   shouldRenderErrorMessage={true}/>
+        <TextField formik={props.formik} placeholder='City' fieldName='details.shippingAddress.city'
+                   shouldRenderErrorMessage={true}/>
+        <TextField formik={props.formik} placeholder='Postal Code' fieldName='details.shippingAddress.postalCode'
+                   shouldRenderErrorMessage={true}/>
+        <TextField formik={props.formik} placeholder='Country' fieldName='details.shippingAddress.country'
+                   shouldRenderErrorMessage={true}/>
+        <TextField formik={props.formik} placeholder='Shipping note (optional)'
+                   fieldName='details.shippingAddress.shippingNote' shouldRenderErrorMessage={true}/>
     </div>
 }
 
