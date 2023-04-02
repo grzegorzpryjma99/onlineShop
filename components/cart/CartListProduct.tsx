@@ -17,7 +17,7 @@ const CartListProduct = (props: ProductCartProps) => {
     const [value, setValue] = useState<number>(props.quantity);
     const {removeProductFromCart, updateQuantity} = CartService();
 
-    const updateProduct= (quantity: number) => {
+    const updateProduct = (quantity: number) => {
         updateQuantity(props.product, quantity)
     }
 

@@ -63,7 +63,7 @@
 
 .order-details-wrapper > div > input {
     width: 100%;
-    margin: 10px 0px;
+    margin: 10px 0px 0px 0px;
 }
 
 .ordering-sum-up {
@@ -71,4 +71,8 @@
     border-radius: 5px;
     padding: 1em;
     margin: 10px 0px;
+}
+
+.order-header {
+    margin-top: 10px;
 }

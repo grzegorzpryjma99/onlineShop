@@ -8,26 +8,26 @@ interface ShippingDetailsProps {
     formik: FormikType<OrderInfo>
 }
 
+const shippingButtons = [
+    {
+        name: 'Free Shipping',
+        value: ShippingMethod.FREE_SHIPPING,
+        price: "Free"
+    },
+    {
+        name: 'Self Picking',
+        value: ShippingMethod.SELF_PICKUP,
+        price: 'Free'
+    },
+    {
+        name: 'Standard Shipping',
+        value: ShippingMethod.STANDARD_SHIPPING,
+        price: '9.99 PLN'
+    },
+];
+
 const ShippingDetails = (props: ShippingDetailsProps) => {
     let formik = props.formik;
-
-    const radioBtns = [
-        {
-            name: 'Free Shipping',
-            value: ShippingMethod.FREE_SHIPPING,
-            price: "Free"
-        },
-        {
-            name: 'Self Picking',
-            value: ShippingMethod.SELF_PICKUP,
-            price: 'Free'
-        },
-        {
-            name: 'Standard Shipping',
-            value: ShippingMethod.STANDARD_SHIPPING,
-            price: '9.99 PLN'
-        },
-    ];
 
     return <div className='order-details-wrapper'>
         <h2>Shipping Info</h2>
@@ -40,7 +40,7 @@ const ShippingDetails = (props: ShippingDetailsProps) => {
             </p>
         </div>
         <h2>Shipping method</h2>
-        {radioBtns.map((btn, i) => {
+        {shippingButtons.map((btn, i) => {
             return (
                 <div key={i} className="radio-button-field">
                     <RadioButtonField
@@ -49,6 +49,7 @@ const ShippingDetails = (props: ShippingDetailsProps) => {
                             flexDirection: 'row-reverse',
                             justifyContent: 'left'
                         }}
+                        shouldRenderErrorMessage={false}
                         formik={formik} fieldName='shipping.shippingMethod' field='shipping' subField='shippingMethod'
                         label={btn.name} btn={btn}/>
                     <p className='description'>{btn.price}</p>

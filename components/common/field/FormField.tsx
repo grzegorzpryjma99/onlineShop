@@ -9,6 +9,7 @@ type FormFieldProps<T> = {
     fieldName: string & keyof T
     label?: string
     style?: CSSProperties
+    shouldRenderErrorMessage?: boolean
 }
 
 export const FormField = <T, >(props: PropsWithChildren<FormFieldProps<T>>) => {
@@ -21,6 +22,7 @@ export const FormField = <T, >(props: PropsWithChildren<FormFieldProps<T>>) => {
     return <BaseFormField style={props.style} id={id} className={props.className}
                           label={label}
                           errorMsg={errorMsg}
+                          shouldRenderErrorMessage={props.shouldRenderErrorMessage}
                           isInvalid={isInvalid}>
         {props.children}
     </BaseFormField>

@@ -22,12 +22,13 @@ type DropdownFieldProps<T, U, B> = ({
     loading?: boolean
     label?: string
     onChange?(value: string): void
+    shouldRenderErrorMessage: boolean
 }
 
 export const DropdownField = <T, U, B>(props: DropdownFieldProps<T, U, B>) => {
 
     return <FormField formik={props.formik} fieldName={props.fieldName} className={props.className}
-                      label={props.label || ''}>
+                      label={props.label || ''} shouldRenderErrorMessage={props.shouldRenderErrorMessage}>
         <Dropdown id={props.fieldName} options={props.options}
                   disabled={props.disabled || props.loading}
                   optionValue={props.type === "CUSTOM" ? props.optionValue : undefined}

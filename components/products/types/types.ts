@@ -7,11 +7,11 @@ export interface Product {
 }
 
 export enum ProductCategory {
-    Home="HOME",
-    Garden="GARDEN"
+    Home = "HOME",
+    Garden = "GARDEN"
 }
 
 export enum SortMode {
-    High="HIGH",
-    Low="LOW"
+    High = "HIGH",
+    Low = "LOW"
 }

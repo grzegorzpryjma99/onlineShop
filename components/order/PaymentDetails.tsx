@@ -8,19 +8,19 @@ interface PaymentDetailsProps {
     formik: FormikType<OrderInfo>
 }
 
+const paymentButtons = [
+    {
+        name: 'Blik',
+        value: PaymentMethod.BLIK,
+    },
+    {
+        name: 'Bank transfer',
+        value: PaymentMethod.BANK_TRANSFER,
+    },
+];
+
 const PaymentDetails = (props: PaymentDetailsProps) => {
     let formik = props.formik;
-
-    const radioBtns = [
-        {
-            name: 'Blik',
-            value: PaymentMethod.BLIK,
-        },
-        {
-            name: 'Bank transfer',
-            value: PaymentMethod.BANK_TRANSFER,
-        },
-    ];
 
     return <div className='order-details-wrapper'>
         <h2>Info</h2>
@@ -36,7 +36,7 @@ const PaymentDetails = (props: PaymentDetailsProps) => {
             <p className=''>{formik.values.shipping.shippingMethod || 'none'}: {props.formik.values.shipping.shippingMethod !== null ? paymentMethodToPrice(props.formik.values.shipping.shippingMethod) : ''}</p>
         </div>
         <h2>Shipping method</h2>
-        {radioBtns.map((btn, i) => {
+        {paymentButtons.map((btn, i) => {
             return (
                 <div key={i} className="radio-button-field">
                     <RadioButtonField
@@ -45,6 +45,7 @@ const PaymentDetails = (props: PaymentDetailsProps) => {
                             flexDirection: 'row-reverse',
                             justifyContent: 'left'
                         }}
+                        shouldRenderErrorMessage={false}
                         formik={formik} fieldName='payment.paymentMethod' field='payment' subField='paymentMethod'
                         label={btn.name} btn={btn}/>
                 </div>

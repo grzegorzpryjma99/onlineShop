@@ -1,5 +1,4 @@
 import React from "react";
-import {Product} from "@/components/products/types/types";
 import CartListProduct from "@/components/cart/CartListProduct";
 import {CartProduct} from "@/components/cart/types";
 
@@ -15,9 +14,9 @@ const CartList = (props: ProductCartProps) => (
             <p className='list-three'>Quantity</p>
             <p className='list-four'>Total</p>
         </div>
-        {props.product.map((products: CartProduct) => {
+        {props.product.length > 0 ? props.product.map((products: CartProduct) => {
             return <CartListProduct key={products.product.id} product={products.product} quantity={products.quantity}/>
-        })}
+        }) : <p className='cart-empty-info'>Cart empty</p>}
     </div>
 );
 

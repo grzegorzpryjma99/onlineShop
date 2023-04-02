@@ -30,6 +30,7 @@ const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
     }
 
     return <div className='product-wrapper'>
+        {/*TODO: ładniejszy layout*/}
         <Toast ref={toast}/>
         <div className='product-container-box'>
             <div className='product-container'>
@@ -70,7 +71,6 @@ const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
                                       label='Add to cart'/>
                     </div>
                 </div>
-
             </div>
         </div>
         <div className='product-details-box'>

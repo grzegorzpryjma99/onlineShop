@@ -14,6 +14,7 @@ interface RadioButtonFieldProps<T> {
     label: string
     btn: any,
     style?: CSSProperties
+    shouldRenderErrorMessage: boolean
 }
 
 export const RadioButtonField = ({
@@ -24,9 +25,11 @@ export const RadioButtonField = ({
                                      className,
                                      label,
                                      btn,
-                                     style
+                                     style,
+                                     shouldRenderErrorMessage
                                  }: RadioButtonFieldProps<any>) => {
-    return <FormField style={style} formik={formik} fieldName={fieldName} className={className} label={label}>
+    return <FormField style={style} formik={formik} fieldName={fieldName} className={className} label={label}
+                      shouldRenderErrorMessage={shouldRenderErrorMessage}>
         <RadioButton
             id={fieldName} name={fieldName}
             {...btn}

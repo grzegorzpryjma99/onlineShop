@@ -16,14 +16,29 @@ import {Toast} from "primereact/toast";
 import ShippingDetails from "@/components/order/ShippingDetails";
 import PaymentDetails from "@/components/order/PaymentDetails";
 import {Dialog} from "primereact/dialog";
+import {FormikType} from "@/lib/FormikUtils";
+
+const items = [{label: 'Details'}, {label: 'Shipping'}, {label: 'Payment'}];
+
+const renderStep = (activeTab: number, formik: FormikType<OrderInfo>) => {
+    switch (activeTab) {
+        case 0:
+            return <OrderDetails formik={formik}/>;
+        case 1:
+            return <ShippingDetails formik={formik}/>
+        case 2:
+            return <PaymentDetails formik={formik}/>
+    }
+}
 
 const OrderTemplate = () => {
 
     const toast = useRef<Toast>(null);
     const [dialogVisible, setDialogVisible] = useState<boolean>(false);
-    const {getCart, savedCart} = CartService();
     const [products, setProducts] = useState<Cart>()
-    const [totalCost, setTotalCost] = useState<number>(0)
+    const [activeTab, setActiveTab] = useState(0)
+    const {getCart, savedCart} = CartService();
+
     const formik = useFormik<OrderInfo>({
         initialValues: {
             details: {
@@ -47,71 +62,68 @@ const OrderTemplate = () => {
             },
             couponCode: ''
         },
+        validateOnChange: false,
         validationSchema: orderInfoValidationSchema,
         onSubmit: (data) => {
-            //action
-            formik.resetForm();
         }
     });
-    console.log(formik.values)
 
     useEffect(() => {
         setProducts(getCart())
     }, [savedCart])
 
-    const items = [
-        {
-            label: 'Details',
-            command: (event: any) => {
-            }
-        },
-        {
-            label: 'Shipping',
-            command: (event: any) => {
-            }
-        },
-        {
-            label: 'Payment',
-            command: (event: any) => {
-            }
-        }
-    ];
-
-    const [activeTab, setActiveTab] = useState(0)
-
-    const renderStep = (activeTab: number) => {
-        switch (activeTab) {
-            case 0:
-                return <OrderDetails formik={formik}/>;
-            case 1:
-                return <ShippingDetails formik={formik}/>
-            case 2:
-                return <PaymentDetails formik={formik}/>
-        }
-    }
-
-    const handleGoToShipping = () => {
+    const handleOrder = () => {
         formik.validateForm().then(errors => {
-            if (Object.keys(errors).length === 0) {
-                setActiveTab(1)
-            } else {
-                console.log(errors)
-                console.log('masz bledy')
+            if (errors.payment === undefined) {
+                setDialogVisible(true)
             }
         });
+    }
+
+    const handleChangeTab = (tabNumber: number) => {
+        if (activeTab === 0) {
+            formik.validateForm().then(errors => {
+                if (errors.details === undefined) {
+                    if (tabNumber === 1) {
+                        setActiveTab(tabNumber)
+                    }
+                    if (tabNumber == 2) {
+                        formik.validateForm().then(errors => {
+                            if (errors.shipping === undefined) {
+                                setActiveTab(tabNumber)
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        if (activeTab === 1) {
+            if (tabNumber === 2) {
+                formik.validateForm().then(errors => {
+                    if (errors.shipping === undefined) {
+                        setActiveTab(tabNumber)
+                    }
+                });
+            }
+            if (tabNumber == 0) {
+                setActiveTab(tabNumber)
+            }
+        }
+
+        if (activeTab === 2) {
+            setActiveTab(tabNumber)
+        }
     }
 
     const renderButton = (activeTab: number) => {
         switch (activeTab) {
             case 0:
                 return <ActionButton style={{width: '100%'}} label='Go to Shipping'
-                                     actionFunction={() => {
-                                         handleGoToShipping()
-                                         // setActiveTab(1)
-                                     }}/>
+                                     actionFunction={() => handleChangeTab(1)}/>
             case 1:
                 return <ActionButton style={{width: '100%'}} label='Go to Payment'
-                                     actionFunction={() => setActiveTab(2)}/>
+                                     actionFunction={() => handleChangeTab(2)}/>
             case 2:
                 return <ActionButton style={{width: '100%'}} actionFunction={handleOrder} label='Pay now'/>
         }
@@ -148,22 +160,17 @@ const OrderTemplate = () => {
         }
     }
 
-    const handleOrder = () => {
-        setDialogVisible(true)
-    }
-
     return <>
         <div className='order-container'>
             <Toast ref={toast}/>
-
             <div className='order-steps-wrapper'>
                 <div>
                     <Link href='/'><Image className='logo' src={logo} alt='logo'/></Link>
-                    <Steps model={items} activeIndex={activeTab} onSelect={(e) => setActiveTab(e.index)}
+                    <Steps model={items} activeIndex={activeTab} onSelect={(e) => handleChangeTab(e.index)}
                            readOnly={false}/>
                 </div>
                 <div className='order-step-content'>
-                    {renderStep(activeTab)}
+                    {renderStep(activeTab, formik)}
                 </div>
                 <div className='order-button-wrapper'>
                     {renderBackButton(activeTab)}

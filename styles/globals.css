@@ -211,3 +211,7 @@ button:hover {
     border-color: #56B280 !important;
     background: #56B280 !important;
 }
+
+.p-steps .p-steps-item .p-menuitem-link:not(.p-disabled):focus {
+    box-shadow: none !important;
+}

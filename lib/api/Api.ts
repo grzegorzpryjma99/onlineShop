@@ -1,6 +1,8 @@
 import {Product, ProductCategory, SortMode} from "@/components/products/types/types";
 import productsJson from "./products.json"
 
+//TODO: Cała klasa raczej tylko pod csr
+
 export type FetchError = {
     type: 'WRONG_RESPONSE'
     status: number

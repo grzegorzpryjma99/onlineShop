@@ -11,20 +11,17 @@ interface SimpleProductCardProps {
 
 const SimpleProductCard = (props: SimpleProductCardProps) => (
     <div className='productCard'>
-        <Link href={'/produkt/' + props.id} >
+        <Link href={'/produkt/' + props.id}>
             <Image src={productPlaceholder}
                    alt='zdjecie produktu'
-                // layout='fill'
                    objectFit='contain'
                    style={{background: '#F7F8FA', position: 'inherit', width: '100%'}}
             />
-            {/*<p>dsadas</p>*/}
             <div className='product-card-details'>
                 <p className='subject' id='product-name'>{props.name}</p>
                 <p className='mentor' id='product-price'>{props.price} PLN</p>
             </div>
         </Link>
-
     </div>
 );
 

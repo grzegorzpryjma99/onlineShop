@@ -1,19 +1,19 @@
-import {Layout} from "@/components/layout/Layout";
 import dynamic from "next/dynamic";
 import {OnlyContentLayout} from "@/components/layout/OnlyContentLayout";
+import {Loader} from "@/components/common/Loader";
 
 export default function ProductListPage() {
 
     const LoginTemplate = dynamic(
-        () => import('@/components/login/LoginTemplate'),
+        () => import('@/components/login/template/LoginTemplate'),
         {
-            loading: () => <p>Wczytywanie...</p>, //TODO: create loader
+            loading: () => <Loader/>,
             ssr: true
         }
     )
 
     return (
-        <OnlyContentLayout title='Sklep online'>
+        <OnlyContentLayout title='Sklep online - logowanie'>
             <LoginTemplate/>
         </OnlyContentLayout>
     )

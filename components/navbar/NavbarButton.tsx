@@ -14,10 +14,9 @@ const NavbarButton = (props: NavbarButtonProps) => {
     const {countProducts} = CartService();
     const [productCounter, setProductCounter] = useState<number>(0);
 
-
+    //TODO: wiadomo
     useEffect(() => {
         setProductCounter(countProducts);
-        console.log(productCounter)
     }, [countProducts])
 
     return <>

@@ -9,6 +9,7 @@ interface BaseFormFieldProps<T> {
     errorMsg: JSX.Element
     id: string
     style?: CSSProperties
+    shouldRenderErrorMessage?: boolean
 }
 
 export const BaseFormField = <T, >({
@@ -19,14 +20,15 @@ export const BaseFormField = <T, >({
                                        errorMsg,
                                        isInvalid,
                                        style,
-                                       children
+                                       children,
+                                       shouldRenderErrorMessage
                                    }: PropsWithChildren<BaseFormFieldProps<T>>) => {
     return <div style={style} className={"field " + (className ? className : "")}>
         {label && <label htmlFor={id} className={classNames('block', {'p-error': isInvalid})}>
             {label}
         </label>}
         {children}
-        {help && <small id={id + "-help"} className="block">{help}</small>}
-        {errorMsg}
+        {shouldRenderErrorMessage && help && <small id={id + "-help"} className="block">{help}</small>}
+        {shouldRenderErrorMessage && errorMsg}
     </div>
 }

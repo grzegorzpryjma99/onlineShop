@@ -1,5 +1,4 @@
 import React from "react";
-import {Product} from "@/components/products/types/types";
 import Image from "next/image";
 import productPlaceholder from "/public/productPlaceholder.png"
 import {CartProduct} from "@/components/cart/types";

@@ -5,24 +5,28 @@ import News from "@/components/home/News";
 import Opinions from "@/components/home/Opinions";
 import React from "react";
 import Link from "next/link";
+import {exampleProductList4, exampleProductList8} from "@/lib/Utils";
 
-export default function HomeTemplate() {
 
-    return (
-        <>
-            <HomeBanner/>
-            <HomeCard/>
-            <div>
-                <PopularProductList title='Products' description='Order it for you or for your beloved ones' productNumber={8}/>
-                <Link href='/lista-produktow'><p className='description'>Show more...</p></Link>
-                <br/>
-
-            </div>
-            <News/>
-            <Opinions/>
-            <div>
-                <PopularProductList title='Popular' description='Our top selling product that you may like' productNumber={4}/>
-            </div>
-        </>
-    )
+const HomeTemplate = () => {
+    return <>
+        <HomeBanner/>
+        <HomeCard/>
+        <div>
+            {/*TODO: pobrać i przekazać produkty*/}
+            <PopularProductList title='Products' description='Order it for you or for your beloved ones'
+                                products={exampleProductList8}/>
+            <Link href='/lista-produktow'><p className='description'>Show more...</p></Link>
+            <br/>
+        </div>
+        <News/>
+        <Opinions/>
+        <div>
+            {/*TODO: pobrać i przekazać produkty*/}
+            <PopularProductList title='Popular' description='Our top selling product that you may like'
+                                products={exampleProductList4}/>
+        </div>
+    </>
 }
+
+export default HomeTemplate;

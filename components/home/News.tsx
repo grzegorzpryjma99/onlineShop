@@ -3,11 +3,7 @@ import Image from "next/image";
 import newsPlaceholder from "public/newsPhoto.png"
 import ActionButton from "@/components/common/button/ActionButton";
 
-
-interface NewsProps {
-}
-
-const News = (props: NewsProps) => (
+const News = () => (
     <div className='news-container'>
         <div>
             <div>

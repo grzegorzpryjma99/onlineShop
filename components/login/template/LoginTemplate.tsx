@@ -20,7 +20,6 @@ const LoginTemplate = () => {
             summary: 'Sorry',
             detail: 'Function not implemented :(',
             life: 3000,
-            sticky: true
         });
     }
 
@@ -48,23 +47,8 @@ const LoginTemplate = () => {
                 <p className='description'>Not a member? &nbsp;</p>
                 <UnderlineButton actionFunction={notImplementedFunction} label='Sign up now'/>
             </div>
-
         </div>
     </div>
 }
 
 export default LoginTemplate;
-
-export async function getStaticProps() {
-    // Call an external API endpoint to get posts
-    const res = await fetch('https://.../posts')
-    const posts = await res.json()
-
-    // By returning { props: { posts } }, the Blog component
-    // will receive `posts` as a prop at build time
-    return {
-        props: {
-            posts,
-        },
-    }
-}

@@ -21,7 +21,7 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
     }, [])
 
     const handleCoupon = () => {
-        setCouponDiscount('xD')
+        setCouponDiscount('any string xD')
         if (couponDiscount === '') {
             // setTotal(props.total * 0.9)
         }
