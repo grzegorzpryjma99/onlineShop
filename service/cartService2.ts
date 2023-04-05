@@ -69,7 +69,9 @@ const useCart = (): {
 
     const countProducts = (): number => {
         let counter: number = 0;
-        cart.products.map((product) => (counter += product.quantity));
+        if (cart){
+            cart.products.map((product) => (counter += product.quantity));
+        }
         return counter;
     };
 

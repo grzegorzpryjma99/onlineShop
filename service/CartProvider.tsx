@@ -9,24 +9,21 @@ type CartContextType = {
 
 interface CartProviderProps {
     children?: React.ReactNode;
+    initialState: Cart
 }
 
+export const initialCartState: Cart = {products: [], totalAmount: 0};
+
 const CartContext = createContext<CartContextType>({
-    cart: {products: [], totalAmount: 0},
+    cart: initialCartState,
     setCart: () => {
     },
 });
 
 export const useCartContext = () => useContext(CartContext);
 
-const CartProvider: React.FC<CartProviderProps> = ({children}) => {
-    const [cart, setCart] = useState<Cart>(() => {
-        const cartFromCookie = Cookies.get('cart');
-        if (cartFromCookie) {
-            return JSON.parse(cartFromCookie);
-        }
-        return {products: [], totalAmount: 0};
-    });
+const CartProvider: React.FC<CartProviderProps> = ({initialState, children}) => {
+    const [cart, setCart] = useState<Cart>(initialState);
 
     useEffect(() => {
         Cookies.set('cart', JSON.stringify(cart));
