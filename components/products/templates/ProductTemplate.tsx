@@ -1,23 +1,20 @@
 import React, {useRef, useState} from "react";
 import Image from "next/image";
 import productPlaceHolder from "/public/productPlaceholder.png"
-import {Product} from "@/components/products/types/types";
 import ActionButton from "@/components/common/button/ActionButton";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
-import CartService from "@/service/cartService";
 import {Toast} from "primereact/toast";
+import useCart from "@/service/cartService2";
 
-export type ProductProps = {
-    product: Product
-}
 
-const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
+const ProductTemplate = (props: any) => {
 
     const toast = useRef<Toast>(null);
     const [quantity, setQuantity] = useState<number>(1)
-    const {addProductToCart} = CartService();
+    const {addProductToCart} = useCart();
+
 
     const addToCart = () => {
         addProductToCart(props.product, quantity)
@@ -63,7 +60,7 @@ const ProductTemplate: React.VFC<ProductProps> = (props: ProductProps) => {
                     <div>
                         <div>
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s
+                            been the industry&apos;s standard dummy text ever since the 1500s
                         </div>
                         <ActionButton style={{width: '95%'}} divStyle={{textAlign: "center"}}
                                       icon={<FontAwesomeIcon icon={faCartShopping}/>}

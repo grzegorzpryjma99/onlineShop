@@ -3,9 +3,9 @@ import Image from "next/image";
 import productPlaceholder from '/public/productPlaceholder.png'
 import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
 import UnderlineButton from "@/components/common/button/UnderlineButton";
-import CartService from "@/service/cartService";
 import {Product} from "@/components/products/types/types";
 import Link from "next/link";
+import useCart from "@/service/cartService2";
 
 interface ProductCartProps {
     product: Product
@@ -15,7 +15,7 @@ interface ProductCartProps {
 const CartListProduct = (props: ProductCartProps) => {
 
     const [value, setValue] = useState<number>(props.quantity);
-    const {removeProductFromCart, updateQuantity} = CartService();
+    const {updateQuantity, removeProductFromCart} = useCart();
 
     const updateProduct = (quantity: number) => {
         updateQuantity(props.product, quantity)

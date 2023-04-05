@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {Badge} from "primereact/badge";
-import CartService from "@/service/cartService";
+import useCart from "@/service/cartService2";
 
 interface NavbarButtonProps {
     piIconName: string
@@ -11,10 +11,9 @@ interface NavbarButtonProps {
 
 const NavbarButton = (props: NavbarButtonProps) => {
 
-    const {countProducts} = CartService();
-    const [productCounter, setProductCounter] = useState<number>(0);
+    const {countProducts} = useCart();
+    const [productCounter, setProductCounter] = useState<number>(countProducts);
 
-    //TODO: wiadomo
     useEffect(() => {
         setProductCounter(countProducts);
     }, [countProducts])
