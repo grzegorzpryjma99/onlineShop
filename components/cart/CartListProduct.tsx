@@ -5,7 +5,7 @@ import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
 import UnderlineButton from "@/components/common/button/UnderlineButton";
 import {Product} from "@/components/products/types/types";
 import Link from "next/link";
-import useCart from "@/service/cartService2";
+import useCart from "@/service/useCart";
 
 interface ProductCartProps {
     product: Product

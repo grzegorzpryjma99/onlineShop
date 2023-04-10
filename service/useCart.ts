@@ -1,7 +1,6 @@
-import { useContext } from 'react';
-import { Product } from '@/components/products/types/types';
-import { Cart } from '@/components/cart/types';
-import { useCartContext } from '@/service/CartProvider';
+import {Product} from '@/components/products/types/types';
+import {Cart} from '@/components/cart/types';
+import {useCartContext} from '@/service/CartProvider';
 
 const useCart = (): {
     cart: Cart;
@@ -11,11 +10,13 @@ const useCart = (): {
     getCart: () => Cart;
     countProducts: () => number;
 } => {
-    const { cart, setCart } = useCartContext();
+    const {cart, setCart} = useCartContext();
 
     const addProductToCart = (product: Product, quantity: number) => {
+        let amount = cart.totalAmount
         const productExists = cart.products.some((el) => el.product.id === product.id);
         if (!productExists) {
+            amount = amount + product.price * quantity
             setCart({
                 ...cart,
                 products: [
@@ -26,10 +27,12 @@ const useCart = (): {
                         totalAmount: product.price * quantity,
                     },
                 ],
+                totalAmount: amount
             });
         } else {
             const updatedProducts = cart.products.map((item) => {
                 if (item.product.id === product.id) {
+                    amount = amount + (quantity * item.product.price)
                     return {
                         ...item,
                         quantity: item.quantity + quantity,
@@ -39,13 +42,19 @@ const useCart = (): {
                     return item;
                 }
             });
-            setCart({ ...cart, products: updatedProducts });
+            setCart({
+                ...cart,
+                products: updatedProducts,
+                totalAmount: amount
+            });
         }
     };
 
     const updateQuantity = (product: Product, quantity: number) => {
+        let amount = cart.totalAmount
         const updatedProducts = cart.products.map((item) => {
             if (item.product.id === product.id) {
+                amount = amount - item.totalAmount + (quantity * item.product.price)
                 return {
                     ...item,
                     quantity,
@@ -55,12 +64,21 @@ const useCart = (): {
                 return item;
             }
         });
-        setCart({ ...cart, products: updatedProducts });
+        setCart({
+            ...cart,
+            products: updatedProducts,
+            totalAmount: amount
+        });
     };
 
     const removeProductFromCart = (id: number) => {
         const updatedProducts = cart.products.filter((item) => item.product.id !== id);
-        setCart({ ...cart, products: updatedProducts });
+        const amount = updatedProducts.length > 0 ? (updatedProducts.map(item => item.totalAmount).reduce((accumulator, currentValue) => accumulator + currentValue)) : 0
+        setCart({
+            ...cart,
+            products: updatedProducts,
+            totalAmount: amount
+        });
     };
 
     const getCart = (): Cart => {
@@ -69,7 +87,7 @@ const useCart = (): {
 
     const countProducts = (): number => {
         let counter: number = 0;
-        if (cart){
+        if (cart) {
             cart.products.map((product) => (counter += product.quantity));
         }
         return counter;

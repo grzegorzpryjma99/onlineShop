@@ -1,7 +1,7 @@
 import ActionButton from "@/components/common/button/ActionButton";
 import CartList from "@/components/cart/CartList";
 import UnderlineButton from "@/components/common/button/UnderlineButton";
-import useCart from "@/service/cartService2";
+import useCart from "@/service/useCart";
 
 const CartTemplate = () => {
 
@@ -13,7 +13,7 @@ const CartTemplate = () => {
         <CartList product={cart?.products || []}/>
         <div className='cart-sum-up-container'>
             <p>Sub-total</p>
-            <p>{cart?.totalAmount} PLN</p>
+            <p>{cart.totalAmount} PLN</p>
             <div className='cart-sum-up-button'>
                 <ActionButton style={{width: '50%', fontSize: '18px'}}
                               url={(cart?.products || []).length > 0 ? '/zakupy' : '/lista-produktow'}

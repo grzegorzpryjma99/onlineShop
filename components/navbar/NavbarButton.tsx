@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {Badge} from "primereact/badge";
-import useCart from "@/service/cartService2";
+import useCart from "@/service/useCart";
 
 interface NavbarButtonProps {
     piIconName: string

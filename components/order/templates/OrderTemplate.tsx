@@ -16,7 +16,7 @@ import ShippingDetails from "@/components/order/ShippingDetails";
 import PaymentDetails from "@/components/order/PaymentDetails";
 import {Dialog} from "primereact/dialog";
 import {FormikType} from "@/lib/FormikUtils";
-import useCart from "@/service/cartService2";
+import useCart from "@/service/useCart";
 
 const items = [{label: 'Details'}, {label: 'Shipping'}, {label: 'Payment'}];
 

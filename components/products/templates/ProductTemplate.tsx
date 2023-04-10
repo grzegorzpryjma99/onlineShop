@@ -6,7 +6,7 @@ import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
 import {Toast} from "primereact/toast";
-import useCart from "@/service/cartService2";
+import useCart from "@/service/useCart";
 
 
 const ProductTemplate = (props: any) => {

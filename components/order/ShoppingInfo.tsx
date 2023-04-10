@@ -6,6 +6,7 @@ import {FormikType} from "@/lib/FormikUtils";
 import {OrderInfo} from "@/lib/types";
 import {paymentMethodToPrice} from "@/lib/Utils";
 import ActionButton from "@/components/common/button/ActionButton";
+import useCart from "@/service/useCart";
 
 interface ShoppingInfoProps {
     products?: CartProduct[]
@@ -14,18 +15,26 @@ interface ShoppingInfoProps {
 
 const ShoppingInfo = (props: ShoppingInfoProps) => {
 
-    const [total, setTotal] = useState<number>(0);
-    const [couponDiscount, setCouponDiscount] = useState<string>('');
-
-    useEffect(() => {
-    }, [])
+    const {cart} = useCart();
+    const [total, setTotal] = useState<number>(cart.totalAmount);
+    const [couponDiscount, setCouponDiscount] = useState<boolean>(false);
+    const [couponDiscountText, setCouponDiscountText] = useState<string>('');
 
     const handleCoupon = () => {
-        setCouponDiscount('any string xD')
-        if (couponDiscount === '') {
-            // setTotal(props.total * 0.9)
+        if(couponDiscountText !== ''){
+            setCouponDiscount(true)
+        } else {
+            setCouponDiscount(false)
         }
     }
+
+    useEffect(() => {
+        if (couponDiscount) {
+            setTotal(total * 0.9)
+        } else {
+            setTotal(cart.totalAmount)
+        }
+    }, [couponDiscount])
 
     return <div className='shopping-info-wrapper'>
         <div className='shopping-product-section'>
@@ -37,7 +46,7 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
             <div className='shopping-info-section'>
                 <span style={{width: '100%'}} className="p-input-icon-left">
                     <i className="pi pi-dollar"/>
-                    <InputText style={{width: '100%'}} placeholder="Coupon code"/>
+                    <InputText style={{width: '100%'}} onChange={e => setCouponDiscountText(e.target.value)} placeholder="Coupon code"/>
                 </span>
                 <ActionButton
                     divStyle={{
@@ -47,7 +56,9 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
                         width: '25%'
                     }}
                     style={{margin: 0, width: '100%'}} label='Add code'
-                    actionFunction={handleCoupon}/>
+                    actionFunction={() => {
+                        handleCoupon()
+                    }}/>
             </div>
             {couponDiscount && <div className='shopping-info-section'>
                 <p>Discount</p>
