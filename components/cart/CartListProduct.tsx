@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Image from "next/image";
-import productPlaceholder from '/public/productPlaceholder.png'
+import productPlaceholder from '/public/image 8.png'
 import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
 import UnderlineButton from "@/components/common/button/UnderlineButton";
 import {Product} from "@/components/products/types/types";

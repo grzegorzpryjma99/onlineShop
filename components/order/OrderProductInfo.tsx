@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import productPlaceholder from "/public/productPlaceholder.png"
+import productPlaceholder from "/public/image 8.png"
 import {CartProduct} from "@/components/cart/types";
 
 interface BuyingProductInfoProps {

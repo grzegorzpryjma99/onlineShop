@@ -31,7 +31,7 @@ const sortOptions: SortModeDropDown[] = [
 
 const ProductsListTemplate = () => {
 
-    const productsOnPage: number = 16;
+    const productsOnPage: number = 8;
     const [products, setProducts] = useState<Product[]>([]);
     const [actualPage, setActualPage] = useState<number>(0);
     const [totalElement, setTotalElement] = useState<number>(0);

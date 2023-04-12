@@ -84,7 +84,7 @@ export function getPaginatedProductsWithFilter(pageNumber: number, pageSize: num
 
         if (name !== undefined && name !== null && name !== "") {
             filteredProducts = filteredProducts.filter(product => {
-                return product.name.includes(name)
+                return product.name.toLowerCase().trim().includes(name.toLowerCase().trim())
             });
             totalElement = filteredProducts.length;
         }
