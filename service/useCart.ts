@@ -1,6 +1,6 @@
 import {Product} from '@/components/products/types/types';
 import {Cart} from '@/components/cart/types';
-import {useCartContext} from '@/service/CartProvider';
+import {initialCartState, useCartContext} from '@/service/CartProvider';
 
 const useCart = (): {
     cart: Cart;
@@ -9,6 +9,7 @@ const useCart = (): {
     removeProductFromCart: (id: number) => void;
     getCart: () => Cart;
     countProducts: () => number;
+    clearCart: () => void;
 } => {
     const {cart, setCart} = useCartContext();
 
@@ -93,6 +94,10 @@ const useCart = (): {
         return counter;
     };
 
+    const clearCart = () => {
+        setCart(initialCartState);
+    };
+
     return {
         cart,
         addProductToCart,
@@ -100,6 +105,7 @@ const useCart = (): {
         removeProductFromCart,
         getCart,
         countProducts,
+        clearCart
     };
 };
 

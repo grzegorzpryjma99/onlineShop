@@ -9,14 +9,14 @@ interface ProductCartProps {
 const CartList = (props: ProductCartProps) => (
     <div className='cart-list'>
         <div className='cart-headers'>
-            <p className='list-one'>Product</p>
+            <p className='list-one' style={{paddingLeft: '6em'}}>Product</p>
             <p className='list-two'>Price</p>
             <p className='list-three'>Quantity</p>
             <p className='list-four'>Total</p>
         </div>
         {props.product.length > 0 ? props.product.map((products: CartProduct) => {
             return <CartListProduct key={products.product.id} product={products.product} quantity={products.quantity}/>
-        }) : <p className='cart-empty-info'>Cart empty</p>}
+        }) : <p className='empty-info'>Cart empty</p>}
     </div>
 );
 

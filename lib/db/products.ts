@@ -56,5 +56,12 @@ export const products: Product[] = [
         "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
         "price": 94,
         "category": ProductCategory.HOME
+    },
+    {
+        "id": 9,
+        "name": "Produkt1",
+        "description": "All hand-made with natural soy wax, Candleaf is made for your pleasure moments.",
+        "price": 94,
+        "category": ProductCategory.HOME
     }
 ]

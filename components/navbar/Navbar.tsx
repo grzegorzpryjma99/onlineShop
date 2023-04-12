@@ -15,7 +15,7 @@ const Navbar = () => (
         <div className='navbarItemContainer'>
             <NavbarItem label='Discover' url='/lista-produktow'/>
             <NavbarItem label='Home' url='/'/>
-            <NavbarItem label='Contact us' url='/'/>
+            <NavbarItem label='About us' url='/nasze-produkty'/>
         </div>
         <div className='navbarItemContainer'>
             <NavbarButton showBadge={false} url='/logowanie' piIconName='pi-user'/>

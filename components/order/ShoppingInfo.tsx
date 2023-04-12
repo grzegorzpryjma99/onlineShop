@@ -4,7 +4,7 @@ import {InputText} from "primereact/inputtext";
 import {CartProduct} from "@/components/cart/types";
 import {FormikType} from "@/lib/FormikUtils";
 import {OrderInfo} from "@/lib/types";
-import {paymentMethodToPrice} from "@/lib/Utils";
+import {paymentMethodToIncurredCost, paymentMethodToPrice} from "@/lib/Utils";
 import ActionButton from "@/components/common/button/ActionButton";
 import useCart from "@/service/useCart";
 
@@ -21,20 +21,34 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
     const [couponDiscountText, setCouponDiscountText] = useState<string>('');
 
     const handleCoupon = () => {
-        if(couponDiscountText !== ''){
+        if (couponDiscountText !== '') {
             setCouponDiscount(true)
         } else {
             setCouponDiscount(false)
         }
+
+        if (couponDiscount) {
+            setCouponDiscount(false)
+        }
+    }
+
+    const costRecalculate = () => {
+        let shippingAmount = props.formik.values.shipping.shippingMethod != null ? paymentMethodToIncurredCost(props.formik.values.shipping.shippingMethod) : 0
+        if (couponDiscount) {
+            setTotal((cart.totalAmount * 0.9) + shippingAmount)
+        } else {
+            setTotal(cart.totalAmount + shippingAmount)
+        }
     }
 
     useEffect(() => {
-        if (couponDiscount) {
-            setTotal(total * 0.9)
-        } else {
-            setTotal(cart.totalAmount)
-        }
+        costRecalculate();
     }, [couponDiscount])
+
+    // TODO: koszty dostawy
+    useEffect(() => {
+        costRecalculate()
+    }, [props.formik.values.shipping.shippingMethod])
 
     return <div className='shopping-info-wrapper'>
         <div className='shopping-product-section'>
@@ -46,7 +60,8 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
             <div className='shopping-info-section'>
                 <span style={{width: '100%'}} className="p-input-icon-left">
                     <i className="pi pi-dollar"/>
-                    <InputText style={{width: '100%'}} onChange={e => setCouponDiscountText(e.target.value)} placeholder="Coupon code"/>
+                    <InputText style={{width: '100%'}} onChange={e => setCouponDiscountText(e.target.value)}
+                               placeholder="Coupon code"/>
                 </span>
                 <ActionButton
                     divStyle={{
@@ -55,7 +70,7 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
                         marginLeft: '10px',
                         width: '25%'
                     }}
-                    style={{margin: 0, width: '100%'}} label='Add code'
+                    style={{margin: 0, width: '100%'}} label={couponDiscount ? 'Remove code' : 'Add code'}
                     actionFunction={() => {
                         handleCoupon()
                     }}/>
@@ -70,7 +85,7 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
             </div>
             <div className='shopping-info-section'>
                 <p>Total</p>
-                <p className='price'>{total} PLN</p>
+                <p className='price'>{total.toFixed(2)} PLN</p>
             </div>
         </div>
     </div>

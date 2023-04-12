@@ -31,7 +31,7 @@
     border-bottom: 1px solid #E5E5E5;
     width: 100%;
     display: flex;
-    padding: 1em
+    padding: 1em 0em;
 }
 
 .list-one {
@@ -44,21 +44,24 @@
     width: 15%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .list-three {
     width: 15%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .list-four {
     width: 15%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-.cart-empty-info {
+.empty-info {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
@@ -71,4 +74,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }

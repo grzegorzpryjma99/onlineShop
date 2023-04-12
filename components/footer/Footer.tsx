@@ -13,13 +13,13 @@ const Footer = () => (
             <div className='footer-details'>
                 <p className='subline'>Discovery</p>
                 <ul>
-                    <Link href='/'>
+                    <Link href='/lista-produktow'>
                         <li>New season</li>
                     </Link>
-                    <Link href='/'>
+                    <Link href='/lista-produktow'>
                         <li>Most searched</li>
                     </Link>
-                    <Link href='/'>
+                    <Link href='/lista-produktow'>
                         <li>Most selled</li>
                     </Link>
                 </ul>
@@ -27,14 +27,14 @@ const Footer = () => (
             <div className='footer-details'>
                 <p className='subline'>About</p>
                 <ul>
-                    <Link href='/'>
-                        <li>New season</li>
+                    <Link href='/404'>
+                        <li>Help</li>
                     </Link>
-                    <Link href='/'>
-                        <li>Most searched</li>
+                    <Link href='/404'>
+                        <li>Shipping</li>
                     </Link>
-                    <Link href='/'>
-                        <li>Most selled</li>
+                    <Link href='/404'>
+                        <li>Affiliate</li>
                     </Link>
                 </ul>
             </div>
@@ -42,13 +42,13 @@ const Footer = () => (
                 <p className='subline'>Info</p>
                 <ul>
                     <Link href='/'>
-                        <li>New season</li>
+                        <li>Contact us</li>
                     </Link>
                     <Link href='/'>
-                        <li>Most searched</li>
+                        <li>Privacy Policies</li>
                     </Link>
                     <Link href='/'>
-                        <li>Most selled</li>
+                        <li>Terms & Conditions</li>
                     </Link>
                 </ul>
             </div>

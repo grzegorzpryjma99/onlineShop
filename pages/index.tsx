@@ -22,7 +22,6 @@ export default function HomePage(props: any) {
 export const getStaticProps: GetStaticProps = async (context) => {
     const res = await fetch('http://localhost:3000/api/products')
     const products = await res.json()
-    console.log("Home.getStaticProps: pobrano dane z api")
     return {
         props: {
             products,

@@ -33,7 +33,7 @@ const renderStep = (activeTab: number, formik: FormikType<OrderInfo>) => {
 
 const OrderTemplate = () => {
 
-    const {cart} = useCart();
+    const {cart, clearCart} = useCart();
     const toast = useRef<Toast>(null);
     const [dialogVisible, setDialogVisible] = useState<boolean>(false);
     const [products, setProducts] = useState<Cart>(cart)
@@ -72,6 +72,7 @@ const OrderTemplate = () => {
         formik.validateForm().then(errors => {
             if (errors.payment === undefined) {
                 setDialogVisible(true)
+                clearCart()
             }
         });
     }
