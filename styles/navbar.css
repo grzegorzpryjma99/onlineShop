@@ -22,3 +22,12 @@
 .navItem {
     padding: 1em;
 }
+
+
+.navbar-button {
+    transition: all 0.3s ease;
+}
+.navbar-button:hover {
+    transform: scale(1.15);
+
+}
