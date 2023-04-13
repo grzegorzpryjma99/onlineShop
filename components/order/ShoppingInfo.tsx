@@ -45,7 +45,6 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
         costRecalculate();
     }, [couponDiscount])
 
-    // TODO: koszty dostawy
     useEffect(() => {
         costRecalculate()
     }, [props.formik.values.shipping.shippingMethod])
@@ -53,7 +52,7 @@ const ShoppingInfo = (props: ShoppingInfoProps) => {
     return <div className='shopping-info-wrapper'>
         <div className='shopping-product-section'>
             {props.products ? props.products?.map((product: CartProduct) => {
-                return <OrderProductInfo key={product.product.id} product={product}/>
+                return <OrderProductInfo key={product.product.id} cartProduct={product}/>
             }) : <p>Cart empty</p>}
         </div>
         <div>

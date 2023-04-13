@@ -13,7 +13,7 @@ const CartTemplate = () => {
         <CartList product={cart?.products || []}/>
         <div className='cart-sum-up-container'>
             <p>Sub-total</p>
-            <p>{cart.totalAmount} PLN</p>
+            <p>{cart.totalAmount.toFixed(2)} PLN</p>
             <div className='cart-sum-up-button'>
                 <ActionButton style={{width: '50%', fontSize: '18px'}}
                               url={(cart?.products || []).length > 0 ? '/zakupy' : '/lista-produktow'}

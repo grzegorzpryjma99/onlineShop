@@ -1,19 +1,22 @@
 import React from "react";
 import Image from "next/image";
-import productPlaceholder from "/public/image 8.png"
 import {CartProduct} from "@/components/cart/types";
+import {getImageById} from "@/lib/imageHelper";
+import Link from "next/link";
 
 interface BuyingProductInfoProps {
-    product: CartProduct
+    cartProduct: CartProduct
 }
 
 const OrderProductInfo = (props: BuyingProductInfoProps) => (
     <div className='buying-product-info-wrapper'>
-        <Image src={productPlaceholder} alt='zdjecie produktu'/>
+        <Link href={'/produkt/' + props.cartProduct.product.id}>
+            <Image src={getImageById(props.cartProduct.product.id)} alt='zdjecie produktu'/>
+        </Link>
         <div>
-            <h2>{props.product.product.name}</h2>
-            <span>{props.product.quantity} {props.product.quantity === 1 ? 'piece' : 'pieces'}</span>
-            <p className='price'>{props.product.totalAmount} PLN</p>
+            <h2>{props.cartProduct.product.name}</h2>
+            <span>{props.cartProduct.quantity} {props.cartProduct.quantity === 1 ? 'piece' : 'pieces'}</span>
+            <p className='price'>{props.cartProduct.totalAmount.toFixed(2)} PLN</p>
         </div>
     </div>
 );
