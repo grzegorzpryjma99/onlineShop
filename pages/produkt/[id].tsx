@@ -30,7 +30,7 @@ interface IParams extends ParsedUrlQuery {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const res = await fetch('http://localhost:3000/api/products') //fixme: on prod
+    const res = await fetch('https://online-shop-8pumfsh77-grzegorzpryjma99.vercel.app/api/products') //fixme: on prod
     const products = await res.json()
     const paths = products.map((product: Product) => ({
         params: {id: product.id.toString()},
@@ -44,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const {id} = context.params as IParams
-    const res = await fetch(`http://localhost:3000/api/product/${id}`)
+    const res = await fetch(`https://online-shop-8pumfsh77-grzegorzpryjma99.vercel.app/api/product/${id}`)
     const product = await res.json()
     return {
         props: {

@@ -20,7 +20,7 @@ export default function HomePage(props: any) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const res = await fetch('http://localhost:3000/api/products')
+    const res = await fetch('https://online-shop-8pumfsh77-grzegorzpryjma99.vercel.app/api/products')
     const products = await res.json()
     return {
         props: {
