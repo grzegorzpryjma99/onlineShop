@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {Badge} from "primereact/badge";
-import useCart from "@/service/cartService2";
+import useCart from "@/service/useCart";
 
 interface NavbarButtonProps {
     piIconName: string
@@ -22,13 +22,13 @@ const NavbarButton = (props: NavbarButtonProps) => {
         {props.url
             ? <div className=''>
                 <Link href={props.url}>
-                    <button><i className={`pi ${props.piIconName} p-overlay-badge`} style={{fontSize: '1.6rem'}}>
+                    <button className='navbar-button'><i className={`pi ${props.piIconName} p-overlay-badge`} style={{fontSize: '1.6rem'}}>
                         {props.showBadge && productCounter !== 0 && <Badge value={productCounter}/>}
                     </i></button>
                 </Link>
             </div>
             : <div className=''>
-                <button>{props.piIconName}</button>
+                <button className='navbar-button'>{props.piIconName}</button>
             </div>
         }
     </>

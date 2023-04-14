@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import Image from "next/image";
-import productPlaceholder from '/public/productPlaceholder.png'
 import {InputNumber, InputNumberValueChangeEvent} from "primereact/inputnumber";
 import UnderlineButton from "@/components/common/button/UnderlineButton";
 import {Product} from "@/components/products/types/types";
 import Link from "next/link";
-import useCart from "@/service/cartService2";
+import useCart from "@/service/useCart";
+import {getImageById} from "@/lib/imageHelper";
 
 interface ProductCartProps {
     product: Product
@@ -24,7 +24,7 @@ const CartListProduct = (props: ProductCartProps) => {
     return <div className='cart-product-container'>
         <div className='list-one'>
             <Link href={'/produkt/' + props.product.id}><Image
-                src={productPlaceholder}
+                src={getImageById(props.product.id)}
                 alt='Zdjecie produktu'
             /></Link>
             <div className='cart-product-container-product-action'>
@@ -55,7 +55,7 @@ const CartListProduct = (props: ProductCartProps) => {
                          decrementButtonIcon="pi pi-minus"/>
         </div>
         <div className='list-four'>
-            {props.product.price * props.quantity} PLN
+            {(props.product.price * props.quantity).toFixed(2)} PLN
         </div>
     </div>
 }

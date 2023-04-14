@@ -14,3 +14,14 @@ export const paymentMethodToPrice = (shippingMethod: ShippingMethod): string => 
             return '9.99 PLN'
     }
 }
+
+export const paymentMethodToIncurredCost = (shippingMethod: ShippingMethod): number => {
+    switch (shippingMethod) {
+        case ShippingMethod.FREE_SHIPPING:
+            return 0
+        case ShippingMethod.SELF_PICKUP:
+            return 0
+        case ShippingMethod.STANDARD_SHIPPING:
+            return 9.99
+    }
+}

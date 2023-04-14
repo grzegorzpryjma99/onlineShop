@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import productPlaceholder from "public/productPlaceholder.png"
 import Link from "next/link";
+import {getImageById} from "@/lib/imageHelper";
 
 interface SimpleProductCardProps {
     id: number
@@ -12,7 +12,7 @@ interface SimpleProductCardProps {
 const SimpleProductCard = (props: SimpleProductCardProps) => (
     <div className='productCard'>
         <Link href={'/produkt/' + props.id}>
-            <Image src={productPlaceholder}
+            <Image src={getImageById(props.id)}
                    alt='zdjecie produktu'
                    objectFit='contain'
                    style={{background: '#F7F8FA', position: 'inherit', width: '100%'}}

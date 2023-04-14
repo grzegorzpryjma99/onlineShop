@@ -16,7 +16,7 @@ import ShippingDetails from "@/components/order/ShippingDetails";
 import PaymentDetails from "@/components/order/PaymentDetails";
 import {Dialog} from "primereact/dialog";
 import {FormikType} from "@/lib/FormikUtils";
-import useCart from "@/service/cartService2";
+import useCart from "@/service/useCart";
 
 const items = [{label: 'Details'}, {label: 'Shipping'}, {label: 'Payment'}];
 
@@ -33,7 +33,7 @@ const renderStep = (activeTab: number, formik: FormikType<OrderInfo>) => {
 
 const OrderTemplate = () => {
 
-    const {cart} = useCart();
+    const {cart, clearCart} = useCart();
     const toast = useRef<Toast>(null);
     const [dialogVisible, setDialogVisible] = useState<boolean>(false);
     const [products, setProducts] = useState<Cart>(cart)
@@ -72,6 +72,7 @@ const OrderTemplate = () => {
         formik.validateForm().then(errors => {
             if (errors.payment === undefined) {
                 setDialogVisible(true)
+                clearCart()
             }
         });
     }

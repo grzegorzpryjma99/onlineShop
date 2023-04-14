@@ -30,7 +30,9 @@ MyApp.getInitialProps = async ({Component, ctx}: NextPageContext): Promise<MyApp
         const cartValue = decodeURIComponent(xd);
         if(cartValue){
             const cartJson = cartValue.split('cart=')[1];
-            initialState = JSON.parse(cartJson)
+            if(cartJson){
+                initialState = JSON.parse(cartJson)
+            }
         }
     }
     let pageProps = {};
