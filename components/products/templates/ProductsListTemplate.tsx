@@ -29,10 +29,10 @@ const sortOptions: SortModeDropDown[] = [
     {name: 'Price Low to High', code: SortMode.Low},
 ];
 
-const ProductsListTemplate = () => {
+const ProductsListTemplate = (props: any) => {
 
     const productsOnPage: number = 8;
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>(props.products);
     const [actualPage, setActualPage] = useState<number>(0);
     const [totalElement, setTotalElement] = useState<number>(0);
     const [selectedCategory, setSelectedCategory] = useState<ProductCategoryDropDown | null>(null);
