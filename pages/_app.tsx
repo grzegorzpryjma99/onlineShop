@@ -52,9 +52,9 @@ MyApp.getInitialProps = async ({Component, ctx}: NextPageContext): Promise<MyApp
 function MyApp({Component, pageProps, initialState = initialCartState}: MyAppProps) {
     return (
         <CartProvider initialState={initialState}>
-            <main className={poppins.className}>
+            <div className={poppins.className}>
                 <Component {...pageProps} />
-            </main>
+            </div>
         </CartProvider>
     );
 }

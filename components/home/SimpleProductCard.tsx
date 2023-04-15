@@ -12,14 +12,22 @@ interface SimpleProductCardProps {
 const SimpleProductCard = (props: SimpleProductCardProps) => (
     <div className='productCard'>
         <Link href={'/produkt/' + props.id}>
-            <Image priority src={getImageById(props.id)}
-                   alt='zdjecie produktu'
-                   objectFit='contain'
-                   style={{background: '#F7F8FA', position: 'inherit', width: '100%'}}
-            />
-            <div className='product-card-details'>
-                <p className='subject' id='product-name'>{props.name}</p>
-                <p className='mentor' id='product-price'>{props.price} PLN</p>
+            <div style={{height: '80%'}}>
+                <Image priority
+                       src={getImageById(props.id)}
+                       alt='zdjecie produktu'
+                       objectFit='contain'
+                       style={{
+                           background: '#F7F8FA',
+                           width: '100%',
+                           objectFit: 'cover',
+                           height: '100%'
+                       }}
+                />
+                <div className='product-card-details'>
+                    <p className='subject' id='product-name'>{props.name}</p>
+                    <p className='mentor' id='product-price'>{props.price} PLN</p>
+                </div>
             </div>
         </Link>
     </div>
