@@ -7,7 +7,6 @@ import '@/styles/cart.css';
 import '@/styles/order.css';
 import '@/styles/info.css';
 import '@/styles/login.css';
-import '@/styles/font.css';
 // @ts-ignore
 import type {AppProps, NextPageContext} from 'next/app';
 import {config} from '@fortawesome/fontawesome-svg-core';
@@ -17,6 +16,13 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import CartProvider, {initialCartState} from '@/service/CartProvider';
 import {Cart} from "@/components/cart/types";
+import {Poppins} from '@next/font/google'
+
+const poppins = Poppins({
+    subsets: ['latin'],
+    style: "normal",
+    weight: ['400', '500', '600'],
+})
 
 config.autoAddCss = false;
 
@@ -46,7 +52,9 @@ MyApp.getInitialProps = async ({Component, ctx}: NextPageContext): Promise<MyApp
 function MyApp({Component, pageProps, initialState = initialCartState}: MyAppProps) {
     return (
         <CartProvider initialState={initialState}>
-            <Component {...pageProps} />
+            <main className={poppins.className}>
+                <Component {...pageProps} />
+            </main>
         </CartProvider>
     );
 }
