@@ -11,6 +11,7 @@ interface PublicLayoutProps {
 export const Layout = (props: PublicLayoutProps) => {
     return <>
         <Head>
+            <meta name={props.title} content={props.title}/>
             <title>{props.title}</title>
         </Head>
         <nav>

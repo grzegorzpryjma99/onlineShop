@@ -9,6 +9,7 @@ interface OrderLayoutProps {
 export const OnlyContentLayout = (props: OrderLayoutProps) => {
     return <>
         <Head>
+            <meta name={props.title} content={props.title}/>
             <title>{props.title}</title>
         </Head>
         <main>
