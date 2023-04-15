@@ -20,7 +20,7 @@ Example performance google raport:
 
 ### More
 
-Version with pure React.js without Server-side rendering available here:
+Pure React.js version without Server-side rendering available here:
 https://github.com/grzegorzpryjma99/onlineShopReact
 
 
