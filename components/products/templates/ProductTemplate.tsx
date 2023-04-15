@@ -28,11 +28,11 @@ const ProductTemplate = (props: any) => {
     }
 
     const itemTemplate = (item: any) => {
-        return <Image src={item} alt='' style={{width: '100%', height: '100%'}}/>;
+        return <Image priority src={item} alt='' style={{width: '100%', height: '100%'}}/>;
     }
 
     const thumbnailTemplate = (item: any) => {
-        return <Image src={item} alt='' style={{width: '100%', height: '100%'}}/>;
+        return <Image priority src={item} alt='' style={{width: '100%', height: '100%'}}/>;
     }
 
     return <div className='product-wrapper'>
@@ -102,12 +102,12 @@ const ProductTemplate = (props: any) => {
                     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
             <div>
-                <Image src={newsPlaceholder} alt='zdjecie informacyjne'/>
+                <Image priority src={newsPlaceholder} alt='zdjecie informacyjne'/>
             </div>
         </div>
         <div className='learn-more-element-wrapper'>
             <div>
-                <Image src={newsPlaceholder} alt='zdjecie informacyjne'/>
+                <Image priority src={newsPlaceholder} alt='zdjecie informacyjne'/>
             </div>
             <div>
                 <div>
