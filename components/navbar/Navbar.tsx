@@ -9,7 +9,7 @@ const Navbar = () => (
     <div className='navbar'>
         <div className="navbarItemContainer">
             <Link href='/'>
-                <Image className='logo' src={logo} alt='logo aplikacji'/>
+                <Image priority className='logo' src={logo} alt='logo aplikacji'/>
             </Link>
         </div>
         <div className='navbarItemContainer'>

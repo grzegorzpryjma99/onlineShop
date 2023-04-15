@@ -11,7 +11,7 @@ interface BuyingProductInfoProps {
 const OrderProductInfo = (props: BuyingProductInfoProps) => (
     <div className='buying-product-info-wrapper'>
         <Link href={'/produkt/' + props.cartProduct.product.id}>
-            <Image src={getImageById(props.cartProduct.product.id)} alt='zdjecie produktu'/>
+            <Image priority src={getImageById(props.cartProduct.product.id)} alt='zdjecie produktu'/>
         </Link>
         <div>
             <h2>{props.cartProduct.product.name}</h2>

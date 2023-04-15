@@ -19,7 +19,7 @@ const News = () => (
             <ActionButton style={{width: '40%', fontSize: '18px'}} url='/nasze-produkty' label='Learn more'/>
         </div>
         <div>
-            <Image src={newsPlaceholder} alt='zdjecie informacyjne'/>
+            <Image priority src={newsPlaceholder} alt='zdjecie informacyjne'/>
         </div>
     </div>
 );

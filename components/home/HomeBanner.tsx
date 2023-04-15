@@ -4,7 +4,7 @@ import backgroundImage from '/public/bg-image.png'
 
 const HomeBanner = () => (
     <div className='banner'>
-        <Image className='bannerImage'
+        <Image priority className='bannerImage'
                src={backgroundImage}
                alt='Zdjecie w tle'
                layout='fill'

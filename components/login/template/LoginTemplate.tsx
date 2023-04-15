@@ -26,7 +26,7 @@ const LoginTemplate = () => {
     return <div className='global-center'>
         <Toast ref={toast}/>
         <div className='login-container'>
-            <Link href='/'><Image className='logo' src={logo} alt='logo'/></Link>
+            <Link href='/'><Image priority className='logo' src={logo} alt='logo'/></Link>
             <h2>Sign in</h2>
             <div className='login-inputs'>
                 <InputText placeholder='Login'/>
