@@ -24,6 +24,7 @@ const CartListProduct = (props: ProductCartProps) => {
     return <div className='cart-product-container'>
         <div className='list-one'>
             <Link href={'/produkt/' + props.product.id}><Image
+                priority
                 src={getImageById(props.product.id)}
                 alt='Zdjecie produktu'
             /></Link>

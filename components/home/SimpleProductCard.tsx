@@ -12,7 +12,7 @@ interface SimpleProductCardProps {
 const SimpleProductCard = (props: SimpleProductCardProps) => (
     <div className='productCard'>
         <Link href={'/produkt/' + props.id}>
-            <Image src={getImageById(props.id)}
+            <Image priority src={getImageById(props.id)}
                    alt='zdjecie produktu'
                    objectFit='contain'
                    style={{background: '#F7F8FA', position: 'inherit', width: '100%'}}

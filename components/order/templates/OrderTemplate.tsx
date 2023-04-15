@@ -162,7 +162,7 @@ const OrderTemplate = () => {
             <Toast ref={toast}/>
             <div className='order-steps-wrapper'>
                 <div>
-                    <Link href='/'><Image className='logo' src={logo} alt='logo'/></Link>
+                    <Link href='/'><Image priority className='logo' src={logo} alt='logo'/></Link>
                     <Steps model={items} activeIndex={activeTab} onSelect={(e) => handleChangeTab(e.index)}
                            readOnly={false}/>
                 </div>

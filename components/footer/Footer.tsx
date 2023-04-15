@@ -6,7 +6,7 @@ import Link from "next/link";
 const Footer = () => (
     <div id="footer" className='footer'>
         <div className='footer-first-section'>
-            <Image className='footer-logo' src={logo} alt='logo'/>
+            <Image priority className='footer-logo' src={logo} alt='logo'/>
             <p>Your natural candle made for your home and for your wellness.</p>
         </div>
         <div className='footer-second-section'>

@@ -21,12 +21,12 @@ const LearnMoreTemplate = () => {
                     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
             <div>
-                <Image src={newsPlaceholder} alt='zdjecie informacyjne'/>
+                <Image priority src={newsPlaceholder} alt='zdjecie informacyjne'/>
             </div>
         </div>
         <div className='learn-more-element-wrapper'>
             <div>
-                <Image src={newsPlaceholder} alt='zdjecie informacyjne'/>
+                <Image priority src={newsPlaceholder} alt='zdjecie informacyjne'/>
             </div>
             <div>
                 <div>
@@ -55,7 +55,7 @@ const LearnMoreTemplate = () => {
                     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
             <div>
-                <Image src={newsPlaceholder} alt='zdjecie informacyjne'/>
+                <Image priority src={newsPlaceholder} alt='zdjecie informacyjne'/>
             </div>
         </div>
     </div>
