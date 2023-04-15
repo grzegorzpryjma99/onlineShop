@@ -16,7 +16,7 @@ next start
 ```
 Example performance google raport:
 
-![obraz](https://user-images.githubusercontent.com/62578864/232229092-724b2375-b41e-407d-924e-f881788e9cfd.png)
+![obraz](https://user-images.githubusercontent.com/62578864/232230353-05ee2965-582f-4069-83a6-ba29eeaa98fa.png)
 
 ### More
 
