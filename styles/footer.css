@@ -30,6 +30,10 @@
     color: white;
 }
 
+.footer-details > ul > a {
+    color: white;
+}
+
 .footer-details {
     text-align: start;
     padding: 1em;
