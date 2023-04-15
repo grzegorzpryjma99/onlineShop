@@ -7,6 +7,7 @@ import '@/styles/cart.css';
 import '@/styles/order.css';
 import '@/styles/info.css';
 import '@/styles/login.css';
+import '@/styles/font.css';
 // @ts-ignore
 import type {AppProps, NextPageContext} from 'next/app';
 import {config} from '@fortawesome/fontawesome-svg-core';
