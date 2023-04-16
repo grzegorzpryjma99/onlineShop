@@ -32,9 +32,9 @@ const sortOptions: SortModeDropDown[] = [
 const ProductsListTemplate = (props: any) => {
 
     const productsOnPage: number = 8;
-    const [products, setProducts] = useState<Product[]>(props.products);
+    const [products, setProducts] = useState<Product[]>(props.paginatedProducts);
+    const [totalElement, setTotalElement] = useState<number>(props.totalElement);
     const [actualPage, setActualPage] = useState<number>(0);
-    const [totalElement, setTotalElement] = useState<number>(0);
     const [selectedCategory, setSelectedCategory] = useState<ProductCategoryDropDown | null>(null);
     const [searchProduct, setSearchProduct] = useState<string>("");
     const [sortMode, setSortMode] = useState<SortModeDropDown | null>(null);
