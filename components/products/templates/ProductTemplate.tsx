@@ -9,6 +9,7 @@ import useCart from "@/service/useCart";
 import {images} from "@/lib/imageHelper";
 import newsPlaceholder from "@/public/newsPhoto.png";
 import {Galleria} from "primereact/galleria";
+import {BackButton} from "@/components/common/button/BackButton";
 
 const ProductTemplate = (props: any) => {
 
@@ -38,6 +39,7 @@ const ProductTemplate = (props: any) => {
     return <div className='product-wrapper'>
         {/*TODO: ładniejszy layout*/}
         <Toast ref={toast}/>
+        <BackButton />
         <div className='product-container-box'>
             <div className='product-container-left'>
                 <Galleria value={images} numVisible={5} style={{width: '65%'}}
