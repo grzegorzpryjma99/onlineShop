@@ -17,6 +17,7 @@ import 'primeicons/primeicons.css';
 import CartProvider, {initialCartState} from '@/service/CartProvider';
 import {Cart} from "@/components/cart/types";
 import {Poppins} from '@next/font/google'
+import {BlockModal} from "@/components/common/BlockModal";
 
 const poppins = Poppins({
     subsets: ['latin'],
@@ -52,6 +53,7 @@ MyApp.getInitialProps = async ({Component, ctx}: NextPageContext): Promise<MyApp
 function MyApp({Component, pageProps, initialState = initialCartState}: MyAppProps) {
     return (
         <CartProvider initialState={initialState}>
+            <BlockModal/>
             <div className={poppins.className}>
                 <Component {...pageProps} />
             </div>
