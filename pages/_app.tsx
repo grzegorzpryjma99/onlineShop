@@ -18,6 +18,7 @@ import CartProvider, {initialCartState} from '@/service/CartProvider';
 import {Cart} from "@/components/cart/types";
 import {Poppins} from '@next/font/google'
 import {BlockModal} from "@/components/common/BlockModal";
+import { Analytics } from '@vercel/analytics/react';
 
 const poppins = Poppins({
     subsets: ['latin'],
@@ -56,6 +57,7 @@ function MyApp({Component, pageProps, initialState = initialCartState}: MyAppPro
             <BlockModal/>
             <div className={poppins.className}>
                 <Component {...pageProps} />
+                <Analytics />
             </div>
         </CartProvider>
     );
