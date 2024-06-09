@@ -46,6 +46,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const {id} = context.params as IParams
     const res = await fetch(`https://online-shop-8pumfsh77-grzegorzpryjma99.vercel.app/api/product/${id}`)
     const product = await res.json()
+
     return {
         props: {
             product,
