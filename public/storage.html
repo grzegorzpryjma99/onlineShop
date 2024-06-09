@@ -1,0 +1,31 @@
+<!-- /public/storage.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Storage</title>
+    <script>
+        window.addEventListener('message', (event) => {
+            console.log("test")
+            const allowedOrigins = ['http://localhost:3000', 'https://your-production-domain.com', 'https://rejestr-bdo.mos.gov.pl'];
+            if (allowedOrigins.includes(event.origin)) {
+                const { type, key, value } = event.data;
+
+                if (type === 'set') {
+                    console.log("test")
+
+                    localStorage.setItem(key, value);
+                } else if (type === 'get') {
+                    console.log("test")
+
+                    const storedValue = localStorage.getItem(key);
+                    event.source.postMessage({ key, value: storedValue }, "*");
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
