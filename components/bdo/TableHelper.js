@@ -57,11 +57,16 @@
         }
     }
 
-    const updateCardCount = (count) => {
-        var cardCountElement = document.getElementById('cardCount');
-        if (cardCountElement) {
-            cardCountElement.textContent = `Liczba kart: ${count}`;
+    const updateCardCount = () => {
+        var inputValuesString = localStorage.getItem('exampleKey');
+        if (inputValuesString) {
+            var cardCountElement = document.getElementById('cardCount');
+            if (cardCountElement) {
+                var inputValues = JSON.parse(inputValuesString);
+                cardCountElement.textContent = `Liczba kart: ${inputValues.length}`;
+            }
         }
+
     }
 
     // Pobieranie wartości z localStorage przy ładowaniu strony
@@ -106,11 +111,7 @@
             const command = document.getElementById('commandInput').value;
             eval(command);
             document.getElementById('commandContainer').style.display = 'none';
-            var inputValuesString = localStorage.getItem('exampleKey');
-            if (inputValuesString) {
-                var inputValues = JSON.parse(inputValuesString);
-                updateCardCount(inputValues.length);
-            }
+            updateCardCount();
         } catch (e) {
             console.error('Error executing command:', e);
         }
@@ -175,5 +176,5 @@
 
     // Załadowanie liczby linków przy starcie
     loadLinkCount();
-
+    updateCardCount();
 })();
