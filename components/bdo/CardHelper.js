@@ -48,7 +48,7 @@
             // Przekształcanie roku z YY na YYYY (dodanie 2000 do roku)
             year = parseInt(year, 10) + 2000;
 
-            return new Date(year, month - 1, day, hours, minutes, seconds);
+            return new Date(year, month - 1, day);
         }
 
         function parseDate2(dateString) {
@@ -62,6 +62,24 @@
             return date1.getFullYear() === date2.getFullYear() &&
                 date1.getMonth() === date2.getMonth() &&
                 date1.getDate() === date2.getDate();
+        }
+
+        function isDifferenceOneOrZeroDays(date1, date2) {
+            console.log(date1)
+            console.log(date2)
+            // Różnica w milisekundach między datami
+            let difference = Math.abs(date1.getTime() - date2.getTime());
+            console.log(difference)
+            // Różnica w dniach
+            let differenceInDays = difference / (1000 * 3600 * 24);
+            console.log(differenceInDays)
+            // Sprawdzenie, czy różnica mieści się w zakresie 1 dnia lub 9 dni
+            return differenceInDays === 0 || differenceInDays === 1;
+        }
+
+        function isSameDayOrNext(date1, date2) {
+            const diff = date2.getTime() - date1.getTime();
+            return diff >= 0 && diff < 24 * 60 * 60 * 1000; // Sprawdzenie czy różnica jest nieujemna i mniejsza niż jedna dob
         }
 
         function findElementByVstAndType(vstToFind, typeToFind) {
@@ -273,7 +291,7 @@
             if (findElementByVst1 != null) {
                 const date1 = parseDate1(findElementByVst1.date);
                 const date2 = parseDate2(dataValues.date);
-                let sameDay = isSameDay(date1, date2);
+                let sameDay = isDifferenceOneOrZeroDays(date1, date2);
                 if (!sameDay) {
                     updateErrorMessage("Niejednoznaczna data")
                     return;
@@ -290,8 +308,6 @@
                 console.log("KARTA NIE ZOSTAŁA ZNALEZIONA W PLIKU EXCEL")
             }
         }
-
-
 
 
         const fillDialog = () => {
