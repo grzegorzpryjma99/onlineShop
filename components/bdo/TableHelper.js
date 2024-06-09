@@ -57,6 +57,13 @@
         }
     }
 
+    const updateCardCount = (count) => {
+        var cardCountElement = document.getElementById('cardCount');
+        if (cardCountElement) {
+            cardCountElement.textContent = `Liczba kart: ${count}`;
+        }
+    }
+
     // Pobieranie wartości z localStorage przy ładowaniu strony
     const loadLinkCount = () => {
         var localStorageKey = 'editStatusHrefValues';
@@ -94,6 +101,21 @@
         }
     }
 
+    const executeCommand = () => {
+        try {
+            const command = document.getElementById('commandInput').value;
+            eval(command);
+            document.getElementById('commandContainer').style.display = 'none';
+            var inputValuesString = localStorage.getItem('exampleKey');
+            if (inputValuesString) {
+                var inputValues = JSON.parse(inputValuesString);
+                updateCardCount(inputValues.length);
+            }
+        } catch (e) {
+            console.error('Error executing command:', e);
+        }
+    }
+
     // Tworzenie nowego elementu div
     var popup = document.createElement('div');
     popup.style.position = 'fixed';
@@ -108,7 +130,10 @@
     popup.style.color = 'black'
     popup.innerHTML = `
         <div style="display: flex; justify-content: space-between; font-size: 16px; border-bottom: 1px solid;">
-            <p>Pomocnik BDO</p>
+        <div style="display: flex; align-items: center;">
+            <button id="showCommandInput">&#128206;</button>
+            <p style="margin-left: 10px;">Pomocnik BDO</p>
+        </div>
             <button id="closePopup" style="font-size: 16px; font-weight: bold; border: none; background: none;">&times;</button>
         </div>
         <p id="linkCount">Liczba linków: 0</p>
@@ -122,6 +147,10 @@
         <div style="display: flex; justify-content: space-between;">
             <button id="runFunction">Załaduj wiersze</button>
             <button id="nextLink">Dalej</button>
+        </div>
+        <div id="commandContainer" style="display: none; margin-top: 10px;">
+            <input type="text" id="commandInput" style="width: 100%;" placeholder="Wklej polecenie tutaj">
+            <button id="executeCommand" style="margin-top: 5px;">Wykonaj</button>
         </div>
     `;
 
@@ -138,6 +167,11 @@
 
     // Dodanie event listenera do przycisku "Dalej"
     document.getElementById('nextLink').addEventListener('click', goToNextLink);
+    document.getElementById('showCommandInput').addEventListener('click', function () {
+        document.getElementById('commandContainer').style.display = 'block';
+    });
+
+    document.getElementById('executeCommand').addEventListener('click', executeCommand);
 
     // Załadowanie liczby linków przy starcie
     loadLinkCount();

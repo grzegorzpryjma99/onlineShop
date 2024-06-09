@@ -20,6 +20,17 @@ const ExcelFileUpload: React.FC = () => {
             const firstSheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[firstSheetName];
 
+            const headers = XLSX.utils.sheet_to_json(worksheet, { header: 1 })[0] as string[];
+            const expectedHeaders = ['Nr VST (000)', 'MAKULATURA MG', 'FOLIA W MG', 'DATA'];
+
+            const headersValid = expectedHeaders.every(header => headers.includes(header));
+
+            if (!headersValid) {
+                toast.current?.show({ severity: 'error', summary: 'Błąd', detail: 'Nieprawidłowe nagłówki kolumn' });
+                e.preventDefault();
+                return;
+            }
+
             const jsonData: Card[] = XLSX.utils.sheet_to_json(worksheet, {raw: false}).flatMap((row: any) => {
                 console.log(row)
                 const rowData: Card = {
@@ -41,10 +52,10 @@ const ExcelFileUpload: React.FC = () => {
                 return [rowData, rowData1];
             });
             setValue(jsonData)
+            toast.current?.show({severity: 'success', summary: 'Ok', detail: 'Odśwież stronę'});
         };
 
         reader.readAsArrayBuffer(file);
-        toast.current?.show({severity: 'info', summary: 'Ok', detail: 'Odśwież stronę'});
     };
 
     return (
