@@ -1,10 +1,27 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import useLocalStorage from "@/components/bdo/LocalStorageHook";
+import {DataTable} from "primereact/datatable";
+import {Column} from "primereact/column";
+import {FilterMatchMode} from "primereact/api";
+import {Toast} from 'primereact/toast';
+import ExcelFileUpload from "@/components/bdo/ExcelFileUpload";
+import {Button} from "primereact/button";
+
+export interface Card {
+    vst: string
+    wasteMassValue: number
+    type: string
+    processed: boolean
+    date: Date
+}
 
 const LocalStorage = () => {
-
-    const [value, setValue] = useLocalStorage<object[]>('exampleKey', []);
-    const iframeRef = useRef<HTMLIFrameElement>(null);
+    const toast = useRef<Toast>(null);
+    const [value, setValue] = useLocalStorage<Card[]>('exampleKey', []);
+    const [filters, setFilters] = useState({
+        global: {value: null, matchMode: FilterMatchMode.CONTAINS},
+        vst: {value: '', matchMode: FilterMatchMode.CONTAINS}
+    });
 
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
@@ -25,29 +42,67 @@ const LocalStorage = () => {
         };
     }, [setValue]);
 
-    const syncValueToIframe = (value: object[]) => {
-        if (iframeRef.current) {
-            iframeRef.current.contentWindow?.postMessage(
-                {type: 'set', key: 'exampleKey', value: JSON.stringify(value)}
-            );
-        }
+    const handleCheckboxChange = (rowData: Card) => {
+        const updatedValue = value.map(item => {
+            // Sprawdź czy vst i type są zgodne
+            if (item.vst === rowData.vst && item.type === rowData.type && item.date === rowData.date) {
+                return {...item, processed: !item.processed};
+            }
+            return item;
+        });
+        setValue(updatedValue);
     };
 
-    const handleButtonClick = () => {
-        const newValue = [
-            {vst: 217, wasteMassValue: 1, type: "15 01 02"},
-            {vst: 202, wasteMassValue: 0.0200, type: "15 01 02"},
-            {vst: 234, wasteMassValue: 1, type: "15 01 02"},
-            {vst: 228, wasteMassValue: 5, type: "15 01 02"},
-        ];
-        setValue(newValue);
-        syncValueToIframe(newValue);
+    const copy = () => {
+        navigator.clipboard.writeText(`localStorage.setItem('exampleKey', JSON.stringify(${JSON.stringify(value)}));`)
+        toast.current?.show({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Polecenie zostało skopiowane do schowka'
+        });
+    };
+
+    const processedBodyTemplate = (rowData: Card) => {
+        return (
+            <input
+                type="checkbox"
+                checked={rowData.processed}
+                onChange={() => handleCheckboxChange(rowData)}
+            />
+        );
+    };
+
+    const processedSortFunction = (e: any) => {
+        let _value = [...value];
+        _value.sort((data1, data2) => {
+            let value1 = data1.processed ? 1 : 0;
+            let value2 = data2.processed ? 1 : 0;
+            return (value1 - value2) * e.order;
+        });
+
+        setValue(_value);
     };
 
     return <div>
-        <iframe ref={iframeRef} id="shared-storage-iframe" src="/storage.html" style={{display: 'none'}}></iframe>
-        <pre>{JSON.stringify(value, null, 2)}</pre>
-        <button onClick={handleButtonClick}>Set New Value</button>
+        <Toast ref={toast}/>
+        <ExcelFileUpload/>
+        {value.length > 0 && <Button label="Kopiuj" onClick={copy}/>}
+        <DataTable value={value}
+                   rowGroupMode="rowspan" groupRowsBy="representative.name"
+                   filterDisplay="row" filters={filters}
+                   sortMode="single" sortOrder={1}
+                   tableStyle={{minWidth: '50rem'}}>
+            <Column header="Lp" headerStyle={{width: '3rem'}} body={(data, options) => options.rowIndex + 1}/>
+            <Column field="date" sortable header="Data"/>
+            <Column field="vst" sortable filter filterPlaceholder="Numer oddziału" header="Numer oddziału"/>
+            <Column field="type" header="Typ"/>
+            <Column field="wasteMassValue" header="Masa"/>
+            <Column header="Zrobione"
+                    sortable
+                    sortFunction={processedSortFunction}
+                    body={processedBodyTemplate}
+                    headerStyle={{width: '3rem'}}/>
+        </DataTable>
     </div>
 }
 

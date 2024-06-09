@@ -25,7 +25,7 @@ const useLocalStorage = <T,>(key: string, initialValue: T): [T, SetValue<T>] => 
                 // Send the updated value to the iframe
                 const iframe = document.getElementById('shared-storage-iframe') as HTMLIFrameElement;
                 if (iframe) {
-                    iframe.contentWindow?.postMessage({ type: 'set', key, value: JSON.stringify(valueToStore) }, 'http://localhost:3000');
+                    iframe.contentWindow?.postMessage({ type: 'set', key, value: JSON.stringify(valueToStore) }, 'https://online-shop-ruddy-mu.vercel.app');
                 }
             }
         } catch (error) {
@@ -42,7 +42,7 @@ const useLocalStorage = <T,>(key: string, initialValue: T): [T, SetValue<T>] => 
         };
 
         const handleMessage = (event: MessageEvent) => {
-            if (event.origin === 'http://localhost:3000' && event.data.key === key) {
+            if (event.origin === 'https://online-shop-ruddy-mu.vercel.app' && event.data.key === key) {
                 setStoredValue(event.data.value ? JSON.parse(event.data.value) : initialValue);
             }
         };
