@@ -1,5 +1,5 @@
 import {Product} from '@/components/products/types/types';
-import {Cart} from '@/components/cart/types';
+import {Cart} from '@/components/cart/types/types';
 import {initialCartState, useCartContext} from '@/service/CartProvider';
 
 const useCart = (): {

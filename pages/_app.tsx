@@ -15,7 +15,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import CartProvider, {initialCartState} from '@/service/CartProvider';
-import {Cart} from "@/components/cart/types";
+import {Cart} from "@/components/cart/types/types";
 import {Poppins} from '@next/font/google'
 import {BlockModal} from "@/components/common/BlockModal";
 import { Analytics } from '@vercel/analytics/react';

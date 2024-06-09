@@ -15,7 +15,7 @@ const SimpleProductCard = (props: SimpleProductCardProps) => (
             <div style={{height: '80%'}}>
                 <Image priority
                        src={getImageById(props.id)}
-                       alt='zdjecie produktu'
+                       alt='Product photo'
                        objectFit='contain'
                        style={{
                            background: '#F7F8FA',

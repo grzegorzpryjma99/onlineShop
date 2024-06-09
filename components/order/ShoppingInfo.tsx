@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import OrderProductInfo from "@/components/order/OrderProductInfo";
 import {InputText} from "primereact/inputtext";
-import {CartProduct} from "@/components/cart/types";
+import {CartProduct} from "@/components/cart/types/types";
 import {FormikType} from "@/lib/FormikUtils";
 import {OrderInfo} from "@/lib/types";
 import {paymentMethodToIncurredCost, paymentMethodToPrice} from "@/lib/Utils";

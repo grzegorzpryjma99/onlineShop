@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import {Cart} from '@/components/cart/types';
+import {Cart} from '@/components/cart/types/types';
 import Cookies from 'js-cookie';
 
 type CartContextType = {

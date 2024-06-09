@@ -26,7 +26,9 @@ const LearnMoreTemplate = () => {
         </div>
         <div className='learn-more-element-wrapper'>
             <div>
-                <Image priority src={newsPlaceholder} alt='zdjecie informacyjne'/>
+                <Image priority={true}
+                       src={newsPlaceholder}
+                       alt='Details image'/>
             </div>
             <div>
                 <div>

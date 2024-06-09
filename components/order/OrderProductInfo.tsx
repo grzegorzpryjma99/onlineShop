@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import {CartProduct} from "@/components/cart/types";
+import {CartProduct} from "@/components/cart/types/types";
 import {getImageById} from "@/lib/imageHelper";
 import Link from "next/link";
 

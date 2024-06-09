@@ -10,7 +10,7 @@ import OrderDetails from "@/components/order/OrderDetails";
 import {OrderInfo} from "@/lib/types";
 import {useFormik} from "formik";
 import {orderInfoValidationSchema} from "@/lib/validation";
-import {Cart} from "@/components/cart/types";
+import {Cart} from "@/components/cart/types/types";
 import {Toast} from "primereact/toast";
 import ShippingDetails from "@/components/order/ShippingDetails";
 import PaymentDetails from "@/components/order/PaymentDetails";

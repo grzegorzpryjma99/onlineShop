@@ -1,6 +1,6 @@
 import React from "react";
 import CartListProduct from "@/components/cart/CartListProduct";
-import {CartProduct} from "@/components/cart/types";
+import {CartProduct} from "@/components/cart/types/types";
 
 interface ProductCartProps {
     product: CartProduct[]

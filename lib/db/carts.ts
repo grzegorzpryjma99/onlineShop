@@ -1,5 +1,5 @@
 import {ProductCategory} from "@/components/products/types/types";
-import {Cart} from "@/components/cart/types";
+import {Cart} from "@/components/cart/types/types";
 
 export const carts: Cart[] = [
     {

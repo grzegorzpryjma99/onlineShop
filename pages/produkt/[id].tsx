@@ -6,23 +6,22 @@ import {Loader} from "@/components/common/Loader";
 import {GetStaticPaths, GetStaticProps} from "next";
 import {ParsedUrlQuery} from "querystring";
 
-const ProductPage = (props: any) => {
+    const ProductPage = (props: any) => {
+        const Product = dynamic(
+            () => import('@/components/products/templates/ProductTemplate'),
+            {
+                loading: () => <Loader/>,
+                ssr: true
+            }
+        )
 
-    const Product = dynamic(
-        () => import('@/components/products/templates/ProductTemplate'),
-        {
-            loading: () => <Loader/>,
-            ssr: true
-        }
-    )
+        return <Layout title={props.product?.name || 'Sklep online'}>
+            <Product {...props}/>
+        </Layout>
 
-    return <Layout title={props.product?.name || 'Sklep online'}>
-        <Product {...props}/>
-    </Layout>
+    };
 
-};
-
-export default ProductPage;
+    export default ProductPage;
 
 
 interface IParams extends ParsedUrlQuery {
@@ -31,6 +30,7 @@ interface IParams extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const res = await fetch('https://online-shop-8pumfsh77-grzegorzpryjma99.vercel.app/api/products') //fixme: on prod
+    //    const res = await fetch(process.env.API_URL + '/api/products')
     const products = await res.json()
     const paths = products.map((product: Product) => ({
         params: {id: product.id.toString()},
@@ -42,9 +42,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 }
 
+// const res = await fetch(`https://online-shop-8pumfsh77-grzegorzpryjma99.vercel.app/api/product/${id}`)
+
 export const getStaticProps: GetStaticProps = async (context) => {
     const {id} = context.params as IParams
     const res = await fetch(`https://online-shop-8pumfsh77-grzegorzpryjma99.vercel.app/api/product/${id}`)
+    // const res = await fetch(process.env.API_URL + `/api/product/${id}`)
     const product = await res.json()
     return {
         props: {
