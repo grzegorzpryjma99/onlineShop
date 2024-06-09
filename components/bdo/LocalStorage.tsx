@@ -72,17 +72,6 @@ const LocalStorage = () => {
         );
     };
 
-    const processedSortFunction = (e: any) => {
-        let _value = [...value];
-        _value.sort((data1, data2) => {
-            let value1 = data1.processed ? 1 : 0;
-            let value2 = data2.processed ? 1 : 0;
-            return (value1 - value2) * e.order;
-        });
-
-        setValue(_value);
-    };
-
     return <div>
         <Toast ref={toast}/>
         <ExcelFileUpload/>
@@ -98,8 +87,6 @@ const LocalStorage = () => {
             <Column field="type" header="Typ"/>
             <Column field="wasteMassValue" header="Masa"/>
             <Column header="Zrobione"
-                    sortable
-                    sortFunction={processedSortFunction}
                     body={processedBodyTemplate}
                     headerStyle={{width: '3rem'}}/>
         </DataTable>
